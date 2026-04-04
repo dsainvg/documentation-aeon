@@ -23,3 +23,7 @@ ENV/
 # OS/editor noise
 .DS_Store
 Thumbs.db
+
+docs-imported/
+*-imported.yml
+*.zip

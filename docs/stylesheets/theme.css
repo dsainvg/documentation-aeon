@@ -365,18 +365,20 @@ blockquote,
 
 .aeon-table-wrap {
   margin: 1.35rem 0;
+  max-width: 100%;
   overflow-x: auto;
-  border: 1px solid var(--aeon-line);
+  border: 1px solid rgba(118, 169, 255, 0.18);
   border-radius: 20px;
-  background: linear-gradient(180deg, rgba(12, 24, 38, 0.96), rgba(8, 18, 30, 0.9));
+  background: linear-gradient(180deg, rgba(14, 28, 44, 0.98), rgba(8, 16, 27, 0.96));
   box-shadow: 0 18px 42px rgba(2, 10, 20, 0.24);
 }
 
 table,
 .aeon-table {
   width: 100%;
-  min-width: 38rem;
+  min-width: 0;
   margin: 0;
+  table-layout: auto;
   border-collapse: separate;
   border-spacing: 0;
   border: 0;
@@ -385,41 +387,60 @@ table,
 }
 
 thead th {
-  background: linear-gradient(180deg, rgba(23, 43, 66, 0.98), rgba(16, 32, 50, 0.96));
-  color: var(--aeon-heading);
+  background: linear-gradient(180deg, rgba(28, 49, 74, 0.98), rgba(20, 37, 58, 0.98));
+  color: #f6fbff;
   font-size: 0.92rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 th,
 td {
   background: transparent;
-  border-bottom: 1px solid rgba(152, 190, 240, 0.14);
+  border-bottom: 1px solid rgba(118, 169, 255, 0.1);
   padding: 0.95rem 1rem;
   vertical-align: top;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 tbody tr:nth-child(odd) td {
-  background: rgba(11, 23, 36, 0.72);
+  background: rgba(14, 29, 45, 0.82);
 }
 
 tbody tr:nth-child(even) td {
-  background: rgba(8, 18, 29, 0.9);
+  background: rgba(10, 21, 34, 0.96);
 }
 
 tbody tr:hover td {
-  background: rgba(20, 40, 62, 0.9);
+  background: rgba(21, 43, 67, 0.94);
 }
 
 th + th,
 td + td {
-  border-left: 1px solid rgba(152, 190, 240, 0.1);
+  border-left: 1px solid rgba(118, 169, 255, 0.1);
 }
 
 tr:last-child td {
   border-bottom: 0;
+}
+
+.aeon-table td code,
+.aeon-table th code,
+table td code,
+table th code {
+  background: rgba(118, 169, 255, 0.12);
+  border: 1px solid rgba(118, 169, 255, 0.18);
+  color: #dce8ff;
+}
+
+@media (max-width: 768px) {
+  table,
+  .aeon-table {
+    min-width: 34rem;
+  }
 }
 
 .hero-shell {
