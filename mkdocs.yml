@@ -13,14 +13,6 @@ theme:
   navigation_depth: 3
   highlightjs: false
 
-nav:
-  - Home: index.md
-  - DSL Guide:
-      - Overview: guide/index.md
-      - ORCH Files: guide/orch-files.md
-      - AEON Files: guide/aeon-files.md
-      - LIB Files: guide/lib-files.md
-
 plugins:
   - search
 
@@ -43,3 +35,22 @@ extra:
   brand_tagline: Agent orchestration DSL
 
 copyright: Copyright 2026 Durga Sai
+
+nav:
+  - Home: index.md
+  - AEON FILE:
+      - Overview: AEON FILE.md
+      - AEON Includes: AEON FILE/AEON Includes.md
+      - AEON Memory: AEON FILE/AEON Memory.md
+      - TASKS: AEON FILE/TASKS.md
+  - LIB FILE:
+      - Overview: LIB FILE.md
+      - Functions: LIB FILE/Functions.md
+  - ORCH FILES:
+      - Overview: ORCH FILES.md
+      - Orch Includes:
+          - Overview: ORCH FILES/Orch Includes.md
+          - Environment ( env): ORCH FILES/Orch Includes/Environment ( env).md
+      - ORCH MEMORY: ORCH FILES/ORCH MEMORY.md
+  - Routing: Routing.md
+  - Usage and Structure: Usage and Structure.md

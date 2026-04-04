@@ -16,6 +16,7 @@ from zipfile import ZipFile
 
 NOTION_ID_SUFFIX = re.compile(r"\s+[0-9a-f]{32}(?=\.[^.]+$|$)", re.IGNORECASE)
 MARKDOWN_LINK_RE = re.compile(r"(!?\[[^\]]*]\()([^)]+)(\))")
+MARKDOWN_LINK_START_RE = re.compile(r"!?\[[^\]]*]\(")
 DEFAULT_MOJIBAKE = {
     "\u00e2\u20ac\u2122": "'",
     "\u00e2\u20ac\u201c": '"',
@@ -64,8 +65,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--mkdocs-config",
         type=Path,
-        default=Path("mkdocs-imported.yml"),
-        help="Path to the generated MkDocs config file. Defaults to mkdocs-imported.yml.",
+        default=Path("mkdocs.yml"),
+        help="Path to the generated MkDocs config file. Defaults to mkdocs.yml.",
     )
     parser.add_argument(
         "--mkdocs-template",
@@ -145,6 +146,14 @@ def ensure_output_dir(output_dir: Path, force: bool) -> None:
         )
 
 
+def clear_output_dir(output_dir: Path) -> None:
+    for child in output_dir.iterdir():
+        if child.is_dir():
+            shutil.rmtree(child)
+        else:
+            child.unlink()
+
+
 def build_clean_tree(root_md: Path) -> dict[Path, Path]:
     mapping: dict[Path, Path] = {}
     used_targets: set[Path] = set()
@@ -192,32 +201,62 @@ def fix_mojibake(text: str) -> str:
     return text
 
 
+def find_markdown_link_end(text: str, start_index: int) -> int | None:
+    depth = 0
+    index = start_index
+    while index < len(text):
+        char = text[index]
+        if char == "\\":
+            index += 2
+            continue
+        if char == "(":
+            depth += 1
+        elif char == ")":
+            if depth == 0:
+                return index
+            depth -= 1
+        index += 1
+    return None
+
+
 def rewrite_markdown_links(text: str, source_md: Path, target_md: Path, target_lookup: dict[Path, Path]) -> str:
     source_dir = source_md.parent.resolve()
     target_dir = target_md.parent
+    result: list[str] = []
+    cursor = 0
 
-    def replace(match: re.Match[str]) -> str:
-        raw_target = match.group(2).strip()
-        if not raw_target or raw_target.startswith("#"):
-            return match.group(0)
+    while True:
+        match = MARKDOWN_LINK_START_RE.search(text, cursor)
+        if match is None:
+            result.append(text[cursor:])
+            break
 
-        parsed = urlparse(raw_target)
-        if parsed.scheme or raw_target.startswith(("/", "\\")):
-            return match.group(0)
+        result.append(text[cursor:match.end()])
+        closing_index = find_markdown_link_end(text, match.end())
+        if closing_index is None:
+            result.append(text[match.end():])
+            break
 
-        decoded_path = unquote(parsed.path)
-        resolved = (source_dir / decoded_path).resolve()
-        mapped = target_lookup.get(resolved)
-        if mapped is None:
-            return match.group(0)
+        raw_target = text[match.end():closing_index].strip()
+        replacement = raw_target
 
-        relative_target = os.path.relpath(mapped, target_dir)
-        relative_target = Path(relative_target).as_posix()
-        if parsed.fragment:
-            relative_target = f"{relative_target}#{parsed.fragment}"
-        return f"{match.group(1)}{relative_target}{match.group(3)}"
+        if raw_target and not raw_target.startswith("#"):
+            parsed = urlparse(raw_target)
+            if not parsed.scheme and not raw_target.startswith(("/", "\\")):
+                decoded_path = unquote(parsed.path)
+                resolved = (source_dir / decoded_path).resolve()
+                mapped = target_lookup.get(resolved)
+                if mapped is not None:
+                    relative_target = os.path.relpath(mapped, target_dir)
+                    replacement = Path(relative_target).as_posix()
+                    if parsed.fragment:
+                        replacement = f"{replacement}#{parsed.fragment}"
 
-    return MARKDOWN_LINK_RE.sub(replace, text)
+        result.append(replacement)
+        result.append(")")
+        cursor = closing_index + 1
+
+    return "".join(result)
 
 
 def label_from_markdown(path: Path) -> str:
@@ -356,6 +395,8 @@ def main() -> int:
         mkdocs_template = args.mkdocs_template.resolve()
         if not args.dry_run:
             ensure_output_dir(output_dir, args.force)
+            if args.force:
+                clear_output_dir(output_dir)
 
         temp_root = (Path.cwd() / f".notion-import-{uuid4().hex[:8]}").resolve()
         temp_root.mkdir(parents=True, exist_ok=False)

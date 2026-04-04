@@ -1,112 +1,58 @@
-<div class="hero-shell">
-  <div class="hero-copy">
-    <p class="hero-kicker">Agent orchestration, documented properly</p>
-    <h1>Build multi-agent workflows with a docs site that finally feels intentional.</h1>
-    <p class="hero-lead">
-      Aeon combines <strong>ORCH</strong> for routing, <strong>AEON</strong> for agent behavior, and
-      <strong>LIB</strong> for reusable functions. This site gives the language a polished front door:
-      clearer structure, cleaner URLs, and a darker visual style that feels much closer to a product docs experience.
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="guide/">Start with the guide</a>
-      <a class="btn btn-secondary" href="guide/orch-files/">Read ORCH syntax</a>
-    </div>
-    <div class="hero-metrics">
-      <div class="metric-card">
-        <span class="metric-value">3</span>
-        <span class="metric-label">core file types</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-value">1</span>
-        <span class="metric-label">routing language</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-value">Many</span>
-        <span class="metric-label">agent workflows</span>
-      </div>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <img src="assets/aeon-hero.svg" alt="Abstract Aeon orchestration graphic with agents, routing lines, and code panels.">
-  </div>
-</div>
+# DSL USER GUIDE
 
-<div class="spotlight-grid">
-  <section class="glass-card">
-    <p class="section-kicker">What lives in an Aeon project</p>
-    <h2>Three files, one mental model</h2>
-    <div class="feature-list">
-      <div class="feature-row">
-        <span class="feature-pill orch">.orch</span>
-        <p>Define the global flow, load agents, and control which path runs next.</p>
-      </div>
-      <div class="feature-row">
-        <span class="feature-pill aeon">.aeon</span>
-        <p>Describe a single agent with state, tasks, and local routing.</p>
-      </div>
-      <div class="feature-row">
-        <span class="feature-pill lib">.lib</span>
-        <p>Keep reusable Python-backed functions in one shared place.</p>
-      </div>
-    </div>
-  </section>
+# ORCH Agent Graph Orchestration Language
 
-  <section class="glass-card command-card">
-    <p class="section-kicker">Quick look</p>
-    <h2>The architecture in one glance</h2>
-    <pre class="terminal-window"><code>project/
-|-- traffic.orch
-|-- agents/
-|   |-- intersection.aeon
-|   `-- report.aeon
-`-- shared/
-    `-- math.lib</code></pre>
-    <p class="card-note">ORCH wires the system. AEON files hold behavior. LIB files provide reusable logic.</p>
-  </section>
-</div>
+ORCH is a domain-specific language for building and orchestrating systems made up of multiple intelligent agents. You write agents, give them tasks and memory, and use a central Route block to control which agent runs when.
 
-<section class="section-block">
-  <p class="section-kicker">Start here</p>
-  <h2>Pick the piece you want to understand first</h2>
-  <div class="doc-grid">
-    <a class="doc-card" href="guide/">
-      <span class="doc-card-label">Overview</span>
-      <h3>Understand how the DSL fits together</h3>
-      <p>Get the big picture before you dive into syntax details.</p>
-    </a>
-    <a class="doc-card" href="guide/orch-files/">
-      <span class="doc-card-label">ORCH</span>
-      <h3>Control execution and routing</h3>
-      <p>See how includes, globals, conditions, and lifecycle hooks shape a run.</p>
-    </a>
-    <a class="doc-card" href="guide/aeon-files/">
-      <span class="doc-card-label">AEON</span>
-      <h3>Define one agent at a time</h3>
-      <p>Model state, expose values, write tasks, and create local routes.</p>
-    </a>
-    <a class="doc-card" href="guide/lib-files/">
-      <span class="doc-card-label">LIB</span>
-      <h3>Reuse logic across the project</h3>
-      <p>Keep helper functions shared and keep your agents focused.</p>
-    </a>
-  </div>
-</section>
+Programs in ORCH are structured as a **graph of agents**. Each agent is an independent unit with its own private state and task logic. A single orchestrator file ties them all together, defining which agents exist and how execution flows between them.
 
-<section class="section-block">
-  <p class="section-kicker">Why this layout works better</p>
-  <h2>Made to feel closer to GitBook, not a starter template</h2>
-  <div class="journey-grid">
-    <div class="journey-card">
-      <h3>Clean nav</h3>
-      <p>Guide pages live under readable paths like <code>/guide/orch-files/</code> instead of hashed filenames.</p>
-    </div>
-    <div class="journey-card">
-      <h3>Focused reading</h3>
-      <p>A docs sidebar, page summary, and right-side table of contents keep long pages easy to scan.</p>
-    </div>
-    <div class="journey-card">
-      <h3>Dark visual identity</h3>
-      <p>Gradients, glass panels, and a custom hero graphic give the site a stronger product feel.</p>
-    </div>
-  </div>
-</section>
+---
+
+## Features of the ORCH System
+
+ORCH is not just another agent-chaining framework; it is a purpose-built Domain-Specific Language integrated closely with a Python execution engine (`orch-lib`). The combination of this domain-specific grammar and robust routing runtime yields several standout features:
+
+### 1. Centrally Controlled Execution Automation
+
+Unlike implicit state-machine or message-bus setups where agents call each other, ORCH centralizes the orchestrator flow.
+- At the **Graph** level, the `Route` block decides which node/agent operates.
+- At the **Agent** level, the `Route` block restricts agent scope to simple execution of Tasks.
+- **Result:** You can view a project and immediately trace its state evolution and path without reading deeply into execution details.
+
+### 2. Distributed Compilation
+
+The ORCH execution flow introduces a compiler pipeline composed of two layers:
+- **Fast OCaml Build:** A statically typed `main.exe` executable guarantees the stability and structural soundness of the written DSL. It parses AST structures at high speed.
+- **Generative Automation:** Instead of running the DSL line-by-line via interpreter, the architecture transpiles the tree into native Python bindings (via `converter.py`), resulting in highly integrated and performant executable code.
+
+### 3. Sandboxed Python Escapes (`Func` blocks)
+
+You are not constrained to an obscure declarative language’s limits. The `Func` block directly surfaces **unrestricted, native Python**.
+If your agent needs to perform an API call or run a Machine Learning model, the logic lives securely inside a `Func {}`.
+
+### 4. Simplified Memory Scoping
+
+You do not need to deal with event queues to get memory working between agents.
+- Need graph-wide visibility? Prefix with `Public`.
+- Need isolated safety? Prefix with `Private`.
+`orch-lib` translates this behind the scenes directly into structured contexts for every single agent and task.
+
+### 5. Parallel/Multi-Agent Cloning Support
+
+Through the simple array syntax `Include AgentB{5}`, ORCH will silently duplicate, register, and provision 5 totally disjoint instances of `AgentB`, handling all the memory initialization.
+
+### 6. Built-in Math and Expression Evaluation Sub-language
+
+ORCH’s `Task` body behaves identically to basic `Python` expression assignments with complete support for conditional checks (`IF / ELSE`), logic bindings (`AND`, `OR`), and math operations (`+`, `-`, `/`, `*`), without needing the verbosity of a full language.
+
+---
+
+[Usage and Structure](Usage and Structure.md)
+
+[ORCH FILES](ORCH FILES.md)
+
+[AEON FILE](AEON FILE.md)
+
+[LIB FILE](LIB FILE.md)
+
+[Routing](Routing.md)
