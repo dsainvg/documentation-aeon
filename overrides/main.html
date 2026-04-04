@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% macro render_nav(item, level=0) -%}
+  <li class="aeon-nav-item aeon-nav-level-{{ level }}">
+    {%- if item.children -%}
+      <div class="aeon-nav-group">
+        <p class="aeon-nav-group-title">{{ item.title }}</p>
+        <ul class="aeon-nav-sublist">
+          {%- for child in item.children -%}
+            {{ render_nav(child, level + 1) }}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- else -%}
+      <a href="{{ item.url|url }}" class="aeon-nav-link{% if item.active %} active{% endif %}" {% if item.active %}aria-current="page"{% endif %}>{{ item.title }}</a>
+    {%- endif -%}
+  </li>
+{%- endmacro %}
+
+{% macro render_toc(items) -%}
+  {%- for item in items -%}
+    <li class="aeon-toc-item aeon-toc-level-{{ item.level }}">
+      <a href="{{ item.url }}">{{ item.title }}</a>
+      {%- if item.children -%}
+        <ul class="aeon-toc-sublist">
+          {{ render_toc(item.children) }}
+        </ul>
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+{%- endmacro %}
+
+{% block site_name %}
+<a class="navbar-brand aeon-brand" href="{{ nav.homepage.url|url }}">
+  <img src="{{ 'assets/logo-mark.svg'|url }}" alt="Aeon logo" class="aeon-brand-mark">
+  <span class="aeon-brand-copy">
+    <span class="aeon-brand-name">{{ config.site_name }}</span>
+    <span class="aeon-brand-tagline">{{ config.extra.brand_tagline }}</span>
+  </span>
+</a>
+{% endblock %}
+
+{% block site_nav %}
+{% if nav|length > 1 %}
+<ul class="nav navbar-nav">
+  {% for nav_item in nav %}
+    <li class="nav-item">
+      {% if nav_item.children %}
+        <a href="{{ nav_item.children[0].url|url }}" class="nav-link{% if nav_item.active %} active{% endif %}" {% if nav_item.active %}aria-current="page"{% endif %}>{{ nav_item.title }}</a>
+      {% else %}
+        <a href="{{ nav_item.url|url }}" class="nav-link{% if nav_item.active %} active{% endif %}" {% if nav_item.active %}aria-current="page"{% endif %}>{{ nav_item.title }}</a>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="aeon-shell{% if page and page.is_homepage %} is-homepage{% endif %}">
+  {% if page and not page.is_homepage %}
+  <aside class="aeon-sidebar">
+    <div class="aeon-sidebar-inner">
+      <p class="aeon-sidebar-label">Explore</p>
+      <ul class="aeon-nav-list">
+        {% for nav_item in nav %}
+          {{ render_nav(nav_item) }}
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
+  {% endif %}
+
+  <main class="aeon-main" role="main">
+    {% if page and not page.is_homepage and page.meta and page.meta.summary %}
+    <p class="aeon-page-summary">{{ page.meta.summary }}</p>
+    {% endif %}
+    <article class="aeon-article{% if page and page.is_homepage %} aeon-home-article{% endif %}">
+      {% include "content.html" %}
+    </article>
+  </main>
+
+  {% if page and page.toc and not page.is_homepage %}
+  <aside class="aeon-toc">
+    <div class="aeon-toc-inner">
+      <p class="aeon-toc-label">On this page</p>
+      <ul class="aeon-toc-list">
+        {{ render_toc(page.toc) }}
+      </ul>
+    </div>
+  </aside>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class="aeon-footer-wrap">
+  <p class="aeon-footer-title">{{ config.site_name }}</p>
+  <p>{{ config.site_description }}</p>
+</div>
+{% endblock %}
