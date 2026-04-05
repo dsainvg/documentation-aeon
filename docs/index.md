@@ -7,6 +7,21 @@ ORCH is a domain-specific language for building and orchestrating systems made u
 Programs in ORCH are structured as a **graph of agents**. Each agent is an independent unit with its own private state and task logic. A single orchestrator file ties them all together, defining which agents exist and how execution flows between them.
 
 ---
+# documentation-aeon
+
+Central place to host and organize documentation, notes, and tooling for the Aeon project.
+
+## Documentation
+
+- GitHub Pages: https://dsainvg.github.io/documentation-aeon/
+- Notion workspace: https://www.notion.so/ecafa88181fa83b8af0a015be73b063c?v=338fa88181fa80aba413000c43567500
+
+## Downloads
+
+- LLM config / notes: https://dsainvg.github.io/documentation-aeon/llm.txt
+- Orchestrator binary: https://dsainvg.github.io/documentation-aeon/orch.exe
+
+---
 
 ## Features of the ORCH System
 
