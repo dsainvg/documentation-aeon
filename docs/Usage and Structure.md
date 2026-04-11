@@ -1,12 +1,26 @@
+---
+title: Usage and Structure
+summary: How to run the compiler and organize an ORCH project directory.
+owner: Durga Sai
+verification: Verified
+tags:
+  - usage
+  - structure
+---
+
 # Usage and Structure
 
-Owner: Durga Sai
-Verification: Verified
-Tags: Usage
-
-# ORCH DSL: Usage and Project Structure
-
 The ORCH DSL provides a distributed compilation pipeline. The front-end compiler, `main.exe` (written in OCaml), parses your ORCH project, generates a JSON representation (AST), and then invokes a Python script (`converter.py`) to transpile the project into a runnable Python application leveraging `orch-lib`.
+
+## Installation
+
+Before running the compiler, install the Python runtime package:
+
+```bash
+python -m pip install orch-lib
+```
+
+Need the bundled executable or LLM reference file? See [Installation and Downloads](Installation.md).
 
 ## Usage
 
@@ -18,10 +32,10 @@ You can run the compiler using the following syntax:
 
 ### Options
 
-- `<project_directory>` : **(Required)** Specifies the path to the directory containing your project.
-- `-dryrun` : **(Optional)** Generates the Python file without executing it.
-- `-verbose` : **(Optional)** Enables verbose logging.
-- `-no-delete` : **(Optional)** Prevents automatic cleanup of the generated `.json` and `.py` files.
+- `<project_directory>`: **Required.** Specifies the path to the directory containing your project.
+- `--dryrun`: **Optional.** Generates the Python file without executing it.
+- `--verbose`: **Optional.** Enables verbose logging.
+- `--no-delete`: **Optional.** Prevents automatic cleanup of the generated `.json` and `.py` files.
 
 ### Internal Workflow
 
@@ -31,8 +45,6 @@ You can run the compiler using the following syntax:
 4. **Execution:** Automatically runs the Python file.
 5. **Cleanup:** Deletes intermediate generated `.json` and `.py` files.
 
----
-
 ## Project Structure
 
 Your project should exist within a single directory. The ORCH DSL is designed to cleanly separate global orchestration logic from agent-specific task logic.
@@ -40,26 +52,36 @@ Your project should exist within a single directory. The ORCH DSL is designed to
 ### Directory Components
 
 Your directory can contain the following:
+
 - **The Global Dispatcher (`.orch` files):** The main entry point for the entire project.
 - **Agent Definitions (`.aeon` files):** The individual files or blocks implementing your specific agents.
-- **`*.lib`:** (Optional) Sub-library files containing shared functions.
-- **`*.py`:** (Optional) External Python scripts for direct absolute imports. Note: relative imports are NOT accepted.
+- **`*.lib`:** Optional sub-library files containing shared functions.
+- **`*.py`:** Optional external Python scripts for direct absolute imports. Relative imports are not accepted.
 
 ### The Global Dispatcher (`.orch` files)
 
 The orchestrator handles overall global routing logic and configures which agents exist. Core blocks that can be there:
+
 - **Includes:** Defines the agents to be pulled in.
 - **Global Variables:** Top-level state accessible across the entire structure.
 - **Global Route:** Central authority deciding which agent runs next.
 
 ### The Agent Definition (`.aeon` files)
 
-An agent defines its own memory, executable actions, internal routing logic, and python bindings. Component blocks that can be there:
-- **`Private`:** Defines the agent memory and internal state variables (both private scope and public scope).
+An agent defines its own memory, executable actions, internal routing logic, and Python bindings. Component blocks that can be there:
+
+- **`Private`:** Defines the agent memory and internal state variables, including private and public scope.
 - **`Task`:** Defines executable actions intended to mutate state.
 - **`Func`:** Defines custom inline native Python extensions for complex capability.
 - **`Route`:** Defines the internal, agent-specific routing rules dictating which task executes.
 
 ### The Library Definition (`.lib` files)
 
-A Library file is just a list of functions in a file that needed to be imported in `.aeon` files
+A library file is a list of functions that can be imported by `.aeon` files.
+
+## Next
+
+- [Installation and Downloads](Installation.md)
+- [ORCH Files](ORCH FILES.md)
+- [AEON Files](AEON FILE.md)
+- [Library Files](LIB FILE.md)

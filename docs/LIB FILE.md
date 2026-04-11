@@ -1,20 +1,25 @@
-# LIB FILE
+---
+title: Library Files
+summary: Define reusable Python-backed functions that `.aeon` agents can import.
+owner: Durga Sai
+tags:
+  - library
+  - functions
+---
 
-Owner: Durga Sai
+# Library Files
 
-A `.lib` file is used to define reusable functions that can be used inside agent files.
+A `.lib` file defines reusable functions that can be used inside agent files.
 
 It helps you:
 
-- avoid repeating logic
-- write complex operations in Python
-- reuse functions across multiple agents
+- avoid repeating logic.
+- write complex operations in Python.
+- reuse functions across multiple agents.
 
----
+## Example (`math.lib`)
 
-### Example (math.lib)
-
-```
+```orch
 Func add {
     result = a + b
     return result;
@@ -26,41 +31,36 @@ Func multiply {
 }
 ```
 
----
+## Explanation
 
-### Explanation
+- `Func` -> defines a function.
+- The block body -> contains Python code.
+- `return` -> specifies the output of the function.
 
-- `Func` → defines a function
-- Inside the block → you can write Python code
-- `return` → specifies the output of the function
-
----
-
-### Using Library Functions in Agents
+## Using Library Functions in Agents
 
 First, include the library in your agent file:
 
-```
+```orch
 Include math
 ```
 
 Then call the function inside a task:
 
-```
+```orch
 Task compute {
     result = add(a, b)
 }
 ```
 
----
+## Key Points
 
-### Key Points
+- `.lib` files only contain functions.
+- Functions use Python syntax.
+- Functions must end with `return <variable>;`.
+- Functions can be reused across multiple agents.
 
-- `.lib` files only contain functions
-- Functions use Python syntax
-- Must end with `return <variable>;`
-- Can be reused across multiple agents
+## Next
 
----
-
-[Functions](LIB FILE/Functions.md)
+- [Functions](LIB FILE/Functions.md)
+- [AEON Includes](AEON FILE/AEON Includes.md)

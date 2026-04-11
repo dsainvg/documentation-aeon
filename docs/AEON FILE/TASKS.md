@@ -1,36 +1,41 @@
-# TASKS
+---
+title: Tasks
+summary: Use `Task` blocks to mutate agent state with ORCH's constrained expression language.
+owner: Durga Sai
+verification: Verified
+tags:
+  - aeon
+  - tasks
+---
 
-Owner: Durga Sai
-Verification: Verified
-Tags: aeon
+# Tasks
 
-# Feature Deep-Dive: Tasks
-
-A `Task` block is where an agent mutates state. Think of `Task`s as the distinct “actions” an agent knows how to perform. However, **Tasks are entirely passive**—they don’t choose when to run. Only the agent’s `Route` block decides which Task fires.
+A `Task` block is where an agent mutates state. Think of tasks as the distinct actions an agent knows how to perform. However, **tasks are entirely passive**: they do not choose when to run. Only the agent's `Route` block decides which task fires.
 
 ## The Mathematics Sub-Language
 
-To ensure security and keep state manipulation clean, Tasks do not run arbitrary Python. They run inside ORCH’s constrained expression-based sub-language.
+To keep state manipulation secure and readable, tasks do not run arbitrary Python. They run inside ORCH's constrained expression-based sub-language.
 
-Operations supported in a Task body:
-- **Variable Assignments:** E.g., `score = score + 1;`
-- **Conditional Branches:** `IF { ... } ELSE { ... }`
-- **Logic Statements:** `AND`, `OR`
-- **Mathematical Operators:** `<`, `>`, `<=`, `>=`, `==`, `!=`, `+`, `-`, `/`, `*`
+Operations supported in a task body:
+
+- **Variable Assignments:** For example, `score = score + 1;`.
+- **Conditional Branches:** `IF { ... } ELSE { ... }`.
+- **Logic Statements:** `AND`, `OR`.
+- **Mathematical Operators:** `<`, `>`, `<=`, `>=`, `==`, `!=`, `+`, `-`, `/`, `*`.
 
 ## Example
 
-```
+```orch
 Task evaluate_data {
-    # Basic math and assignment
+    # Basic math and assignment.
     confidence = confidence * 0.95;
 
-    # Conditional checks
+    # Conditional checks.
     IF error_rate > 5.0 {
-        # Inter-agent public mutation
+        # Inter-agent public mutation.
         Public.status = "failure";
     } ELSE {
-        # Invoking an internal Func block or library
+        # Invoking an internal Func block or library.
         Public.status = format_success_msg(confidence);
     }
 }
@@ -38,5 +43,10 @@ Task evaluate_data {
 
 ## Characteristics
 
-- **Strict Logic Constraint:** By restricting exactly what a Task can do, ORCH keeps state mutations clearly defined without getting bogged down in boilerplate API calls or complex logic nested at the wrong layer.
-- **Delegation:** When a Task finds something too complex to calculate mathematically, it pushes that calculation to a `Func` block using `CALL`.
+- **Strict Logic Constraint:** By restricting exactly what a task can do, ORCH keeps state mutations clearly defined without getting bogged down in boilerplate API calls or complex logic nested at the wrong layer.
+- **Delegation:** When a task finds something too complex to calculate mathematically, it pushes that calculation to a `Func` block using `CALL`.
+
+## Next
+
+- [Library Functions](../LIB FILE/Functions.md)
+- [Routing](../Routing.md)

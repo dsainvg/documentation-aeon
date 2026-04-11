@@ -490,6 +490,32 @@ table th code {
   margin-bottom: 1.8rem;
 }
 
+.download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin: 1.35rem 0;
+}
+
+.download-actions .btn {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 0.78rem 1.05rem;
+}
+
+.download-actions .btn-primary {
+  background: linear-gradient(135deg, var(--aeon-primary), #56d9ff);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #06131f;
+}
+
+.download-actions .btn-secondary {
+  background: rgba(118, 169, 255, 0.12);
+  border-color: var(--aeon-line);
+  color: var(--aeon-text);
+}
+
 .hero-actions .btn {
   border: 1px solid transparent;
   border-radius: 999px;

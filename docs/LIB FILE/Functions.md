@@ -1,30 +1,35 @@
+---
+title: Functions
+summary: Use `Func` blocks as Python escape hatches for reusable and complex behavior.
+owner: Durga Sai
+verification: Verified
+tags:
+  - library
+  - functions
+  - aeon
+---
+
 # Functions
 
-Owner: Durga Sai
-Verification: Verified
-Tags: aeon
+While ORCH uses a custom syntax sub-language for mathematical assignments inside `Task` blocks, multi-agent systems routinely need to call APIs, run machine learning inference, interact with databases, or parse complex text.
 
-# Funcs
-
-While ORCH utilizes a custom syntactical sub-language for mathematical assignments inside `Task` blocks, Multi-Agent systems routinely require calling APIs, performing heavy machine learning inference, interacting with databases, or parsing complex text.
-
-The `Func` block is the ultimate escape hatch: **The body of a Func block is unrestricted Python.**
+The `Func` block is the escape hatch: **the body of a `Func` block is unrestricted Python**.
 
 ## Defining a Func
 
-A `Func` lets you write standard Python precisely where you need computational payload without cluttering the declarative nature of the agent’s routing structure.
+A `Func` lets you write standard Python exactly where you need computational payload without cluttering the declarative nature of the agent's routing structure.
 
 The only rule is that a `Func` must conclude by returning a variable to pass back to the DSL environment.
 
 ### Syntax Example
 
-```
+```orch
 Func validate_database {
-    # Pure python is accepted here natively
+    # Pure Python is accepted here natively.
     import sqlite3
     import pandas as pd
 
-    # You can access agent memory natively by reading the mapped objects
+    # You can access agent memory natively by reading the mapped objects.
     threshold = Private.error_threshold
 
     try:
@@ -39,18 +44,18 @@ Func validate_database {
     except Exception as e:
         result_code = -1
 
-    # The block must export a returned variable to hand back to the task
+    # The block must export a returned variable to hand back to the task.
     return result_code;
 }
 ```
 
-## How to use a Func
+## How to Use a Func
 
-You invoke a `Func` from within a `Task` block utilizing the `CALL` operator.
+Invoke a `Func` from within a `Task` block using the `CALL` operator.
 
-```
+```orch
 Task handle_db {
-    # Calling the Python escape hatch logic
+    # Calling the Python escape hatch logic.
     db_status = validate_database();
 
     IF db_status == 1 {
@@ -59,6 +64,11 @@ Task handle_db {
 }
 ```
 
-## Why it works this way
+## Why It Works This Way
 
-By isolating Python inside `Func` blocks and isolating Mathematics/State inside `Task` blocks, the system inherently forces developers to separate execution heavy-lifting from standard agent orchestration logic. It combines the readability of a DSL with the limitless ecosystem of the Python language.
+By isolating Python inside `Func` blocks and isolating mathematics or state mutation inside `Task` blocks, the system encourages developers to separate execution-heavy logic from standard agent orchestration logic. It combines the readability of a DSL with the wider Python ecosystem.
+
+## Next
+
+- [Tasks](../AEON FILE/TASKS.md)
+- [Routing](../Routing.md)

@@ -1,10 +1,14 @@
-# Orch Includes
+---
+title: ORCH Includes
+summary: Include agents, clone agent instances, and load environment variables from `.orch` files.
+owner: Durga Sai
+verification: Verified
+tags:
+  - orch
+  - includes
+---
 
-Owner: Durga Sai
-Verification: Verified
-Tags: orch
-
-# Feature Deep-Dive: Orchfile Includes (`.orch`)
+# ORCH Includes
 
 In the Global Dispatcher context (`.orch` files), the `Include` keyword is structurally responsible for **instantiating agents into the execution graph**.
 
@@ -14,35 +18,37 @@ You use `Include` in an `.orch` file to bind `.aeon` agent definitions to the pr
 
 To pull a single instance of an agent into the runtime graph, use the keyword followed by the agent name.
 
-```
-# Include a single instance of an agent
-# Assuming 'DataCollector.aeon' exists in the folder
+```orch
+# Include a single instance of an agent.
+# Assumes `DataCollector.aeon` exists in the folder.
 Include DataCollector
 ```
 
-Once included, the `DataCollector` can be targeted by the Global `Route` block.
+Once included, `DataCollector` can be targeted by the global `Route` block.
 
 ## Instantiating Parallel Agent Clones
 
-A uniquely powerful feature of the ORCH engine is its ability to instantly clone agent configurations to create multiple parallel processors.
-You can spin up `N` identical agents that share the same `.aeon` instructions but maintain their own completely isolated memory scopes.
+A powerful feature of the ORCH engine is its ability to instantly clone agent configurations to create multiple parallel processors. You can spin up `N` identical agents that share the same `.aeon` instructions but maintain their own completely isolated memory scopes.
 
-You do this by adding bracketed instantiation sizes `{N}`.
+You do this by adding bracketed instantiation sizes, such as `{N}`.
 
-```
-# Automatically create 5 separate instances of ProcessingAgent
+```orch
+# Automatically create five separate instances of ProcessingAgent.
 Include ProcessingAgent{5}
 ```
 
-*Behind the scenes, `orch-lib` handles provisioning 5 parallel instances and registering them dynamically.*
+Behind the scenes, `orch-lib` handles provisioning five parallel instances and registering them dynamically.
 
-# Environment Variables (`.env`)
+## Environment Variables (`.env`)
 
-The ORCH compiler contains a natively integrated pipeline specifically to load environmental secrets safely directly into the running graph.
+The ORCH compiler contains a natively integrated pipeline to load environmental secrets safely into the running graph.
 
-```python
-# Automatically load all variables from `.env` directly into Global Graph Memory
+```orch
+# Automatically load all variables from `.env` into global graph memory.
 Include env
 ```
 
-[Environment (.env)](Orch Includes/Environment ( env).md)
+## Next
+
+- [Environment Variables](Orch Includes/Environment ( env).md)
+- [Global Memory](ORCH MEMORY.md)
