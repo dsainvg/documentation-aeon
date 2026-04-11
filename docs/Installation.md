@@ -38,12 +38,14 @@ Use these files when you need the bundled executable or a plain-text reference c
 
 <p class="download-actions">
   <a class="btn btn-primary" href="../downloads/orch.exe" download>Download orch.exe</a>
+  <a class="btn btn-primary" href="../downloads/linux_main.exe" download>Download linux_main.exe</a>
   <a class="btn btn-secondary" href="../downloads/llm.txt" download>Download llm.txt</a>
 </p>
 
 Direct links:
 
 - [orch.exe](downloads/orch.exe)
+- [linux_main.exe](downloads/linux_main.exe)
 - [llm.txt](downloads/llm.txt)
 
 ## Next
