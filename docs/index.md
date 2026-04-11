@@ -59,9 +59,10 @@ ORCH's `Task` body behaves like basic Python expression assignments with complet
 
 Read the guides in this order when you are learning the DSL:
 
-1. [Installation and Downloads](Installation.md)
-2. [Usage and Structure](Usage and Structure.md)
-3. [ORCH Files](ORCH FILES.md)
-4. [AEON Files](AEON FILE.md)
-5. [Library Files](LIB FILE.md)
-6. [Routing](Routing.md)
+1. [Installation](Installation.md)
+2. [Downloads](Downloads.md)
+3. [Usage and Structure](Usage and Structure.md)
+4. [ORCH Files](ORCH FILES.md)
+5. [AEON Files](AEON FILE.md)
+6. [Library Files](LIB FILE.md)
+7. [Routing](Routing.md)

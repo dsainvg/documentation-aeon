@@ -9,9 +9,10 @@ Central place to host and organize documentation, notes, and tooling for the Aeo
 
 ## Downloads
 
-- LLM config / notes: https://dsainvg.github.io/documentation-aeon/downloads/llm.txt
-- Windows orchestrator binary: https://dsainvg.github.io/documentation-aeon/downloads/orch.exe
-- Linux orchestrator binary: https://dsainvg.github.io/documentation-aeon/downloads/linux_main.exe
+- Releases: https://github.com/dsainvg/documentation-aeon/releases/latest
+- orch.exe: https://github.com/dsainvg/documentation-aeon/releases/latest/download/orch.exe
+- linux_main.exe: https://github.com/dsainvg/documentation-aeon/releases/latest/download/linux_main.exe
+- llm.txt: https://dsainvg.github.io/documentation-aeon/llm.txt
 
 ## Contributing
 
