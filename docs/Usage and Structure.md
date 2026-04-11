@@ -20,7 +20,7 @@ Before running the compiler, install the Python runtime package:
 python -m pip install orch-lib
 ```
 
-Need the compiler executable or `llm.txt`? See [Downloads](Downloads.md).
+Need the compiler executable or `llm.txt`? See [Downloads](Installation/Downloads.md).
 
 ## Usage
 
@@ -82,7 +82,8 @@ A library file is a list of functions that can be imported by `.aeon` files.
 ## Next
 
 - [Installation](Installation.md)
-- [Downloads](Downloads.md)
+- [Downloads](Installation/Downloads.md)
 - [ORCH Files](ORCH FILES.md)
 - [AEON Files](AEON FILE.md)
 - [Library Files](LIB FILE.md)
+

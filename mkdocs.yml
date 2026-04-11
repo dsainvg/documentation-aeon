@@ -38,8 +38,9 @@ copyright: Copyright 2026 Durga Sai
 
 nav:
   - Home: index.md
-  - Installation: Installation.md
-  - Downloads: Downloads.md
+  - Installation:
+      - Overview: Installation.md
+      - Downloads: Installation/Downloads.md
   - Usage and Structure: Usage and Structure.md
   - ORCH Files:
       - Overview: ORCH FILES.md
@@ -55,3 +56,4 @@ nav:
       - Overview: LIB FILE.md
       - Functions: LIB FILE/Functions.md
   - Routing: Routing.md
+

@@ -9,11 +9,10 @@ Central place to host and organize documentation, notes, and tooling for the Aeo
 
 ## Downloads
 
-- Releases: https://github.com/dsainvg/documentation-aeon/releases/latest
-- orch.exe: https://github.com/dsainvg/documentation-aeon/releases/latest/download/orch.exe
-- linux_main.exe: https://github.com/dsainvg/documentation-aeon/releases/latest/download/linux_main.exe
+- Downloads: https://dsainvg.github.io/documentation-aeon/Installation/Downloads/
 - llm.txt: https://dsainvg.github.io/documentation-aeon/llm.txt
 
 ## Contributing
 
 Feel free to open issues or pull requests to improve the documentation or tooling.
+
