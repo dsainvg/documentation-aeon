@@ -30,6 +30,16 @@ You can run the compiler using the following syntax:
 ./main.exe [--dryrun] [--verbose] [--no-delete] <project_directory>
 ```
 
+Platform examples:
+
+```bash
+# Linux/macOS
+./main.exe --verbose example
+
+# Windows PowerShell
+.\main.exe --verbose example
+```
+
 ### Options
 
 - `<project_directory>`: **Required.** Specifies the path to the directory containing your project.
@@ -42,7 +52,7 @@ You can run the compiler using the following syntax:
 1. **Parsing:** `main.exe` reads the project in `<project_directory>`.
 2. **JSON Generation:** Constructs an AST and outputs it as JSON.
 3. **Transpilation:** Converts the JSON file to a Python execution file (`<project_name>.py`).
-4. **Execution:** Automatically runs the Python file.
+4. **Execution:** Automatically runs the Python file unless `--dryrun` is set.
 5. **Cleanup:** Deletes intermediate generated `.json` and `.py` files.
 
 ## Project Structure
@@ -83,7 +93,7 @@ A library file is a list of functions that can be imported by `.aeon` files.
 
 - [Installation](Installation.md)
 - [Downloads](Installation/Downloads.md)
-- [ORCH Files](ORCH FILES.md)
-- [AEON Files](AEON FILE.md)
-- [Library Files](LIB FILE.md)
+- [ORCH Files](ORCH%20FILES.md)
+- [AEON Files](AEON%20FILE.md)
+- [Library Files](LIB%20FILE.md)
 

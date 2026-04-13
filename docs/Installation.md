@@ -34,6 +34,6 @@ python -m pip install orch-lib
 ## Next
 
 - [Downloads](Installation/Downloads.md)
-- [Usage and Structure](Usage and Structure.md)
-- [ORCH Files](ORCH FILES.md)
+- [Usage and Structure](Usage%20and%20Structure.md)
+- [ORCH Files](ORCH%20FILES.md)
 

@@ -56,4 +56,8 @@ nav:
       - Overview: LIB FILE.md
       - Functions: LIB FILE/Functions.md
   - Routing: Routing.md
+  - Releases:
+      - Latest: releases/latest/README.md
+      - Recent: releases/recent/README.md
+      - v2.0.0: releases/v2.0.0/README.md
 

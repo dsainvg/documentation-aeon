@@ -61,9 +61,10 @@ Read the guides in this order when you are learning the DSL:
 
 1. [Installation](Installation.md)
 2. [Downloads](Installation/Downloads.md)
-3. [Usage and Structure](Usage and Structure.md)
-4. [ORCH Files](ORCH FILES.md)
-5. [AEON Files](AEON FILE.md)
-6. [Library Files](LIB FILE.md)
+3. [Usage and Structure](Usage%20and%20Structure.md)
+4. [ORCH Files](ORCH%20FILES.md)
+5. [AEON Files](AEON%20FILE.md)
+6. [Library Files](LIB%20FILE.md)
 7. [Routing](Routing.md)
+8. [Latest Release Notes](releases/latest/README.md)
 

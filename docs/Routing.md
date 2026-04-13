@@ -12,7 +12,7 @@ tags:
 
 The `Route` block represents the central authority of any ORCH project. In ORCH, agents and tasks **never** trigger each other directly. Instead, all transitions and control flows are centralized inside `Route` blocks.
 
-`Route` blocks are evaluated top-down. The first condition that evaluates to `true` is chosen to execute next.
+`Route` blocks are evaluated top-down each pass. Any rule whose condition evaluates to `true` can run in that pass.
 
 There are exactly two variations of the `Route` block: **Global Routing** and **Agent Routing**.
 
@@ -39,13 +39,24 @@ Route {
 
 ## 2. Routing to Specific Clones (`{i}`)
 
-When dealing with an array of cloned agents initialized in your global orchestrator, such as `Include WorkerAgent{3}`, you can explicitly route to a specific instance of that agent class by using the zero-indexed `{i}` syntax.
+When dealing with an array of cloned agents initialized in your global orchestrator, such as `Include WorkerAgent{3}`, you can explicitly route to a specific instance of that agent class by using the `{i}` syntax.
+
+Clone indices are **1-based** in route targets (`{1}`, `{2}`, ...).
 
 ```orch
 # Correct targeted deterministic routing for clones.
 Route {
-    condition_A : WorkerAgent{0}
-    condition_B : WorkerAgent{1}
+    condition_A : WorkerAgent{1}
+    condition_B : WorkerAgent{2}
+}
+```
+
+To target two different clones:
+
+```orch
+Route {
+    condition_A : WorkerAgent{1}
+    condition_B : WorkerAgent{2}
 }
 ```
 
@@ -72,6 +83,6 @@ Route {
 
 ## Related
 
-- [ORCH Files](ORCH FILES.md)
-- [AEON Files](AEON FILE.md)
-- [Tasks](AEON FILE/TASKS.md)
+- [ORCH Files](ORCH%20FILES.md)
+- [AEON Files](AEON%20FILE.md)
+- [Tasks](AEON%20FILE/TASKS.md)

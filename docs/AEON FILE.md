@@ -98,7 +98,7 @@ Task report {
 }
 ```
 
-See [Library Functions](LIB FILE/Functions.md) for reusable Python-backed functions.
+See [Library Functions](LIB%20FILE/Functions.md) for reusable Python-backed functions.
 
 ### 5. Route Block (Execution Flow)
 
@@ -151,6 +151,6 @@ Together, this helps the agent work step by step and interact smoothly with othe
 
 ## In This Section
 
-- [Includes](AEON FILE/AEON Includes.md)
-- [Agent Memory](AEON FILE/AEON Memory.md)
-- [Tasks](AEON FILE/TASKS.md)
+- [Includes](AEON%20FILE/AEON%20Includes.md)
+- [Agent Memory](AEON%20FILE/AEON%20Memory.md)
+- [Tasks](AEON%20FILE/TASKS.md)

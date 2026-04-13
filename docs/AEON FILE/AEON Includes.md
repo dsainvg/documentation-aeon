@@ -19,7 +19,7 @@ In an `.aeon` file, `Include` is used to import reusable modules, shared functio
 When you use `Include my_module` inside an `.aeon` file, the transpiler follows a specific fallback order to resolve the import:
 
 1. **Local `.lib` Files:** First, it checks whether a file named `my_module.lib` exists within your project directory.
-2. **Inbuilt Libraries:** Second, it checks against ORCH's default native library system. There are currently no inbuilt libraries available.
+2. **Built-in Libraries:** Second, it checks ORCH's default native library system. There are currently no built-in libraries available.
 3. **Python Libraries and Scripts:** Finally, if both checks fail, it assumes `my_module` is either an installed Python package or an external `.py` script and uses the Python runtime to import it.
 
 !!! warning
@@ -31,7 +31,7 @@ Below are clean examples demonstrating how the compiler resolves different scena
 
 ### 1. Including a Local `.lib` File
 
-If you have a file named `math_logic.lib` in your folder, this pulls its shared functional logic into the agent.
+If you have a file named `math_logic.lib` in your project folder, this pulls its shared functional logic into the agent.
 
 ```orch
 Include math_logic
@@ -52,14 +52,14 @@ Include json
 Identical to a library, you can import your own local `.py` scripts, for example `utils.py`. Relative paths such as `../utils` are strictly forbidden.
 
 ```orch
-# Resolves the external `utils.py` script located in your root environment.
+# Resolves the external `utils.py` script located in your project root.
 Include utils
 ```
 
-By supporting library includes at the agent level natively across all three fallback contexts, agents can share complex algorithmic logic without redundantly rewriting functional blocks.
+By supporting agent-level includes across all three fallback contexts, agents can share complex algorithmic logic without rewriting functional blocks.
 
 ## Next
 
-- [Agent Memory](AEON Memory.md)
+- [Agent Memory](AEON%20Memory.md)
 - [Tasks](TASKS.md)
-- [Library Functions](../LIB FILE/Functions.md)
+- [Library Functions](../LIB%20FILE/Functions.md)

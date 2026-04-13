@@ -51,11 +51,11 @@ Func validate_database {
 
 ## How to Use a Func
 
-Invoke a `Func` from within a `Task` block using the `CALL` operator.
+Invoke a `Func` from within a `Task` block by calling it directly.
 
 ```orch
 Task handle_db {
-    # Calling the Python escape hatch logic.
+    # Call the Python escape hatch logic.
     db_status = validate_database();
 
     IF db_status == 1 {
@@ -64,11 +64,13 @@ Task handle_db {
 }
 ```
 
+`Func` blocks can live in `.aeon` files or reusable `.lib` files. In either case, end the block with `return <value>;`.
+
 ## Why It Works This Way
 
 By isolating Python inside `Func` blocks and isolating mathematics or state mutation inside `Task` blocks, the system encourages developers to separate execution-heavy logic from standard agent orchestration logic. It combines the readability of a DSL with the wider Python ecosystem.
 
 ## Next
 
-- [Tasks](../AEON FILE/TASKS.md)
+- [Tasks](../AEON%20FILE/TASKS.md)
 - [Routing](../Routing.md)

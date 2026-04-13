@@ -41,3 +41,15 @@ Before running a release executable, install the Python runtime package:
 python -m pip install orch-lib
 ```
 
+## Verify Download Integrity
+
+After downloading a binary, verify it with `SHA256SUMS.txt`.
+
+```bash
+# Linux/macOS
+sha256sum -c SHA256SUMS.txt
+
+# Windows PowerShell
+Get-FileHash .\main-v2.0.0-windows11-server2022-x86_64.exe -Algorithm SHA256
+```
+

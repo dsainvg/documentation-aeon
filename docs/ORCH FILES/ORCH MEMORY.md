@@ -56,5 +56,5 @@ Global memory variables act as the system-wide glue binding agent logic. They tr
 
 ## Next
 
-- [AEON Files](../AEON FILE.md)
+- [AEON Files](../AEON%20FILE.md)
 - [Routing](../Routing.md)

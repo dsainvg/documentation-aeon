@@ -56,5 +56,5 @@ Func check_native_env {
 
 ## Next
 
-- [ORCH Includes](../Orch Includes.md)
-- [Global Memory](../ORCH MEMORY.md)
+- [ORCH Includes](../Orch%20Includes.md)
+- [Global Memory](../ORCH%20MEMORY.md)

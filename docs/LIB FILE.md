@@ -62,5 +62,5 @@ Task compute {
 
 ## Next
 
-- [Functions](LIB FILE/Functions.md)
-- [AEON Includes](AEON FILE/AEON Includes.md)
+- [Functions](LIB%20FILE/Functions.md)
+- [AEON Includes](AEON%20FILE/AEON%20Includes.md)
