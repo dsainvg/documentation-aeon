@@ -1,943 +1,153 @@
-===== docs-imported/AEON FILE.md =====
-# AEON FILE
+===== .venv/Lib/site-packages/markdown-3.10.2.dist-info/licenses/LICENSE.md =====
+BSD 3-Clause License
+
+Copyright 2007, 2008 The Python Markdown Project (v. 1.7 and later)  
+Copyright 2004, 2005, 2006 Yuri Takhteyev (v. 0.2-1.6b)  
+Copyright 2004 Manfred Stienstra (the original version)
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
 
-Owner: Durga Sai
-Tags: aeon
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+===== .venv/Lib/site-packages/mkdocs_get_deps-0.2.2.dist-info/licenses/LICENSE.md =====
+MIT License
+
+Copyright (c) 2023 Oleh Prypin <oleh@pryp.in>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+===== .venv/Lib/site-packages/pip-26.0.1.dist-info/licenses/src/pip/_vendor/idna/LICENSE.md =====
+BSD 3-Clause License
+
+Copyright (c) 2013-2025, Kim Davies and contributors.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+===== .venv/Lib/site-packages/pip/_vendor/idna/LICENSE.md =====
+BSD 3-Clause License
+
+Copyright (c) 2013-2025, Kim Davies and contributors.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-An `.aeon` file defines the behavior of an agent.
-
-Each agent:
-
-- stores some data
-- performs tasks
-- shares results with other agents
-
----
-
-### Basic Structure
-
-Every agent file follows this structure:
-
-```
-Include Library
-
-Private {
-    // variables
-}
-
-Task <task_name> {
-    // logic
-}
-
-Route {
-    // execution flow
-}
-```
-
----
-
-This section explains the structure of an agent using the **EmergencyAgent.aeon** file as an example
-
-### 1. Include (Optional)
-
-You can include Python libraries at the top:
-
-```
-Include time
-Include datetime
-```
-
-These can be used inside tasks.
-
----
-
-### 2. Variables (Private & Public)
-
-All variables are defined inside the `Private` block.
-
-```
-Private {
-    int count;
-    string status = "idle";
-    Public int result;
-}
-```
-
-- `Private` → only this agent can use
-- `Public` → shared with other agents
-
----
-
-### 3. Tasks (Core Logic)
-
-Tasks define what the agent does.
-
-```
-Task process {
-    result = count * 2
-}
-```
-
-You can also use conditions:
-
-```
-Task check {
-    IF count > 10 {
-        result = 1
-    } ELSE {
-        result = 0
-    }
-}
-```
-
----
-
-### 4. Using Python in Tasks
-
-You can directly call Python functions:
-
-```
-Task report {
-    log("Result:", result)
-    time.sleep(1)
-}
-```
-
-[Functions](LIB FILE/Functions.md) 
-
----
-
-### 5. Route Block (Execution Flow)
-
-The `Route` block controls which task runs.
-
-```
-Route {
-    on_start : process
-    count > 10 : check
-    on_end : report
-}
-```
-
-- `on_start` → runs first
-- conditions → decide next tasks
-- `on_end` → runs at the end
-
----
-
-### 6. Complete Example
-
-```
-Include time
-
-Private {
-    int count = 5
-    Public int result = 0
-}
-
-Task process {
-    result = count * 2
-}
-
-Task report {
-    log("Final result:", result)
-    time.sleep(1)
-}
-
-Route {
-    on_start : process
-    on_end : report
-}
-```
-
----
-
-### Understanding the Agent Structure
-
-- Variables → what information the agent keeps track of
-- Tasks → the actions the agent performs
-- Route → decides when each action should run
-
-Together, this helps the agent work step-by-step and interact smoothly with other agents in the system.
-
-[AEON Memory](AEON FILE/AEON Memory.md)
-
-[AEON Includes](AEON FILE/AEON Includes.md)
-
-[TASKS](AEON FILE/TASKS.md)
-
-===== docs-imported/AEON FILE/AEON Includes.md =====
-# AEON Includes
-
-Owner: Durga Sai
-Verification: Verified
-Tags: aeon
-
-# Feature Deep-Dive: Agent Includes (`.aeon`)
-
-Inside the Agent Definition context (`.aeon` files), the `Include` keyword serves a fundamentally different purpose compared to the global orchestrator.
-
-In an `.aeon` file, `Include` is used to import reusable modules, shared functions, or native Python libraries directly into the agent’s internal logic.
-
-## Resolution Order
-
-When you use `Include my_module` inside an `.aeon` file, the transpiler follows a specific fallback order to resolve the import:
-
-1. **Local `.lib` Files**: First, it checks if a file named `my_module.lib` exists within your project directory.
-2. **Inbuilt Libraries**: Second, it checks against ORCH’s default native library system (Note: There are currently no inbuilt libraries available).
-3. **Python Libraries & Scripts**: Finally, if both checks fail, it assumes `my_module` is either an installed Python package or an external `.py` script and uses the Python runtime to import it.
-
-***Important Constraint:** You cannot use relative imports pathing for Python scripts yet (e.g., `Include ../utils`), you can only provide the absolute module name.*
-
-## Usage Examples
-
-Below are clean examples demonstrating how the compiler resolves different scenarios based on the fallback order. Unlike the orchestrator, you **cannot** instantiate arrays of objects `{N}` here.
-
-### 1. Including a Local `.lib` File
-
-If you have a file named `math_logic.lib` in your folder, this pulls its shared functional logic cleanly into the agent.
-
-```
-Include math_logic
-```
-
-### 2. Including Native Python Libraries
-
-If no local `.lib` file or ORCH inbuilt module matches, the system naturally delegates to Python’s execution space. This is how you quickly bring powerful ecosystem libraries into your agent’s `Func` scopes.
-
-```
-# Automatically resolved as standard Python libraries!
-Include math
-Include json
-```
-
-### 3. Including External Python Scripts
-
-Identical to a library, you can seamlessly import your own local `.py` scripts (for example, `utils.py`). Just remember, relative paths (e.g., `../utils`) are strictly forbidden.
-
-```
-# Resolves the external 'utils.py' script located in your root environment
-Include utils
-```
-
-By supporting library includes at the agent level natively across all three fallback contexts, agents are empowered to freely share complex algorithmic logic securely without redundantly rewriting functional blocks.
-
-===== docs-imported/AEON FILE/AEON Memory.md =====
-# AEON Memory
-
-Owner: Durga Sai
-
-# Feature Deep-Dive: Agent Sandbox Memory (`.aeon`)
-
-Within an Agent Definition (`.aeon` file), memory requires explicit scoping constraints. All variables for an agent must be declared tightly within its `Private { ... }` block to instruct the runtime how exposed the internal data is allowed to be.
-
-The available variable types in ORCH are: `int`, `float`, `char`, `string`, `list`, `tuple`.
-
-## Defining Memory Scopes
-
-### 1. `Private` (Explicit Constraint)
-
-Variables explicitly prefixed with `Private` remain strictly protected from the rest of the graph. No other agent can access them.
-
-```
-Private {
-    Private int internal_counter = 0;
-}
-```
-
-### 2. Not Specifying Anything (Implicit Private)
-
-If you declare variables with normal types *without* utilizing the `Public` or `Private` prefix, **it defaults to Private automatically**. This is the standard shorthand for writing agent structures.
-
-```
-Private {
-    # Implicitly private. Identical behavior to 'Private string key = "abc";'
-    string key = "abc";
-}
-```
-
-### 3. `Public` (Graph-Exposed)
-
-By prefixing a declaration with the `Public` keyword, the system manages the variable structure inside the agent’s memory layout, but deliberately pushes an accessible alias pointing directly to the **Graph Level Memory**, broadcasting it natively to the rest of the application.
-
-```
-Private {
-    # Any other agent in the system can read this variable natively!
-    Public float satisfaction = 1.0;
-}
-```
-
-## How to Use Your Own Memory
-
-Inside your `Task` blocks, you manipulate these variables dynamically:
-- **Using Private State:** You can call `Private.internal_counter` explicitly, or just `internal_counter` inherently since it defaults to the local agent tracking scope.
-- **Using Public State:** You can call `Public.satisfaction`.
-
-## How to Access Other Agents’ Variables
-
-If another agent (e.g., `DataCollector.aeon`) declares a `Public list raw_data = [];`, it puts that data into the central graph-level memory under that specific agent’s namespace.
-
-To read and use that variable inside *this* agent, you query it from the global pool using the `Public` accessor **followed by the target Agent’s name**.
-
-**Inside Agent B’s Task block:**
-
-```
-Task analyze {
-    # Fetches 'raw_data' exported publicly from the DataCollector agent specifically
-    my_local_list = Public.DataCollector.raw_data;
-
-    # If DataCollector was cloned as an array (e.g. Include DataCollector{3})
-    # You must specify the index of the clone!
-    my_clone_list = Public.DataCollector[1].raw_data;
-}
-```
-
-===== docs-imported/AEON FILE/TASKS.md =====
-# TASKS
-
-Owner: Durga Sai
-Verification: Verified
-Tags: aeon
-
-# Feature Deep-Dive: Tasks
-
-A `Task` block is where an agent mutates state. Think of `Task`s as the distinct “actions” an agent knows how to perform. However, **Tasks are entirely passive**—they don’t choose when to run. Only the agent’s `Route` block decides which Task fires.
-
-## The Mathematics Sub-Language
-
-To ensure security and keep state manipulation clean, Tasks do not run arbitrary Python. They run inside ORCH’s constrained expression-based sub-language.
-
-Operations supported in a Task body:
-- **Variable Assignments:** E.g., `score = score + 1;`
-- **Conditional Branches:** `IF { ... } ELSE { ... }`
-- **Logic Statements:** `AND`, `OR`
-- **Mathematical Operators:** `<`, `>`, `<=`, `>=`, `==`, `!=`, `+`, `-`, `/`, `*`
-
-## Example
-
-```
-Task evaluate_data {
-    # Basic math and assignment
-    confidence = confidence * 0.95;
-
-    # Conditional checks
-    IF error_rate > 5.0 {
-        # Inter-agent public mutation
-        Public.status = "failure";
-    } ELSE {
-        # Invoking an internal Func block or library
-        Public.status = format_success_msg(confidence);
-    }
-}
-```
-
-## Characteristics
-
-- **Strict Logic Constraint:** By restricting exactly what a Task can do, ORCH keeps state mutations clearly defined without getting bogged down in boilerplate API calls or complex logic nested at the wrong layer.
-- **Delegation:** When a Task finds something too complex to calculate mathematically, it pushes that calculation to a `Func` block using `CALL`.
-
-===== docs-imported/index.md =====
-# DSL USER GUIDE
-
-# ORCH Agent Graph Orchestration Language
-
-ORCH is a domain-specific language for building and orchestrating systems made up of multiple intelligent agents. You write agents, give them tasks and memory, and use a central Route block to control which agent runs when.
-
-Programs in ORCH are structured as a **graph of agents**. Each agent is an independent unit with its own private state and task logic. A single orchestrator file ties them all together, defining which agents exist and how execution flows between them.
-
----
-
-## Features of the ORCH System
-
-ORCH is not just another agent-chaining framework; it is a purpose-built Domain-Specific Language integrated closely with a Python execution engine (`orch-lib`). The combination of this domain-specific grammar and robust routing runtime yields several standout features:
-
-### 1. Centrally Controlled Execution Automation
-
-Unlike implicit state-machine or message-bus setups where agents call each other, ORCH centralizes the orchestrator flow.
-- At the **Graph** level, the `Route` block decides which node/agent operates.
-- At the **Agent** level, the `Route` block restricts agent scope to simple execution of Tasks.
-- **Result:** You can view a project and immediately trace its state evolution and path without reading deeply into execution details.
-
-### 2. Distributed Compilation
-
-The ORCH execution flow introduces a compiler pipeline composed of two layers:
-- **Fast OCaml Build:** A statically typed `main.exe` executable guarantees the stability and structural soundness of the written DSL. It parses AST structures at high speed.
-- **Generative Automation:** Instead of running the DSL line-by-line via interpreter, the architecture transpiles the tree into native Python bindings (via `converter.py`), resulting in highly integrated and performant executable code.
-
-### 3. Sandboxed Python Escapes (`Func` blocks)
-
-You are not constrained to an obscure declarative language’s limits. The `Func` block directly surfaces **unrestricted, native Python**.
-If your agent needs to perform an API call or run a Machine Learning model, the logic lives securely inside a `Func {}`.
-
-### 4. Simplified Memory Scoping
-
-You do not need to deal with event queues to get memory working between agents.
-- Need graph-wide visibility? Prefix with `Public`.
-- Need isolated safety? Prefix with `Private`.
-`orch-lib` translates this behind the scenes directly into structured contexts for every single agent and task.
-
-### 5. Parallel/Multi-Agent Cloning Support
-
-Through the simple array syntax `Include AgentB{5}`, ORCH will silently duplicate, register, and provision 5 totally disjoint instances of `AgentB`, handling all the memory initialization.
-
-### 6. Built-in Math and Expression Evaluation Sub-language
-
-ORCH’s `Task` body behaves identically to basic `Python` expression assignments with complete support for conditional checks (`IF / ELSE`), logic bindings (`AND`, `OR`), and math operations (`+`, `-`, `/`, `*`), without needing the verbosity of a full language.
-
----
-
-[Usage and Structure](Usage and Structure.md)
-
-[ORCH FILES](ORCH FILES.md)
-
-[AEON FILE](AEON FILE.md)
-
-[LIB FILE](LIB FILE.md)
-
-[Routing](Routing.md)
-
-===== docs-imported/LIB FILE.md =====
-# LIB FILE
-
-Owner: Durga Sai
-
-A `.lib` file is used to define reusable functions that can be used inside agent files.
-
-It helps you:
-
-- avoid repeating logic
-- write complex operations in Python
-- reuse functions across multiple agents
-
----
-
-### Example (math.lib)
-
-```
-Func add {
-    result = a + b
-    return result;
-}
-
-Func multiply {
-    result = a * b
-    return result;
-}
-```
-
----
-
-### Explanation
-
-- `Func` → defines a function
-- Inside the block → you can write Python code
-- `return` → specifies the output of the function
-
----
-
-### Using Library Functions in Agents
-
-First, include the library in your agent file:
-
-```
-Include math
-```
-
-Then call the function inside a task:
-
-```
-Task compute {
-    result = add(a, b)
-}
-```
-
----
-
-### Key Points
-
-- `.lib` files only contain functions
-- Functions use Python syntax
-- Must end with `return <variable>;`
-- Can be reused across multiple agents
-
----
-
-[Functions](LIB FILE/Functions.md)
-
-===== docs-imported/LIB FILE/Functions.md =====
-# Functions
-
-Owner: Durga Sai
-Verification: Verified
-Tags: aeon
-
-# Funcs
-
-While ORCH utilizes a custom syntactical sub-language for mathematical assignments inside `Task` blocks, Multi-Agent systems routinely require calling APIs, performing heavy machine learning inference, interacting with databases, or parsing complex text.
-
-The `Func` block is the ultimate escape hatch: **The body of a Func block is unrestricted Python.**
-
-## Defining a Func
-
-A `Func` lets you write standard Python precisely where you need computational payload without cluttering the declarative nature of the agent’s routing structure.
-
-The only rule is that a `Func` must conclude by returning a variable to pass back to the DSL environment.
-
-### Syntax Example
-
-```
-Func validate_database {
-    # Pure python is accepted here natively
-    import sqlite3
-    import pandas as pd
-
-    # You can access agent memory natively by reading the mapped objects
-    threshold = Private.error_threshold
-
-    try:
-        conn = sqlite3.connect('local.db')
-        data = pd.read_sql("SELECT * FROM metrics", conn)
-        conn.close()
-
-        if len(data) > threshold:
-            result_code = 1
-        else:
-            result_code = 0
-    except Exception as e:
-        result_code = -1
-
-    # The block must export a returned variable to hand back to the task
-    return result_code;
-}
-```
-
-## How to use a Func
-
-You invoke a `Func` from within a `Task` block utilizing the `CALL` operator.
-
-```
-Task handle_db {
-    # Calling the Python escape hatch logic
-    db_status = validate_database();
-
-    IF db_status == 1 {
-        alert_flag = true;
-    }
-}
-```
-
-## Why it works this way
-
-By isolating Python inside `Func` blocks and isolating Mathematics/State inside `Task` blocks, the system inherently forces developers to separate execution heavy-lifting from standard agent orchestration logic. It combines the readability of a DSL with the limitless ecosystem of the Python language.
-
-===== docs-imported/ORCH FILES.md =====
-# ORCH FILES
-
-Owner: Durga Sai
-Verification: Verified
-Tags: orch
-
-An `.orch` file is used to define a workflow using your DSL.
-
-It describes a sequence of tasks, what each task does, and how they are connected.
-
-You can think of it as a script that controls how different steps are executed.
-
----
-
-## ORCH File Structure
-
-An ORCH file follows a fixed structure:
-
----
-
-### 1. Include Section
-
-We first include all required files.
-
-- Agent files are included using `Include AgentName`
-- Multiple instances can be created using `{n}`
-
-```
-Include IntersectionAgent {4}
-Include ReportAgent
-```
-
-This is where we load all agents that will be used in the system.
-
-[Orch Includes](ORCH FILES/Orch Includes.md)
-
----
-
-### 2. Global Variables
-
-After including agents, we define global variables.
-
-- These variables control the execution flow
-- Example: `trafficStage`, `responseMode`
-
-```
-int trafficStage = 0
-int responseMode = 0
-```
-
-They are mainly used inside the Route block for decision making.
-
----
-
-### 3. Route Block
-
-The Route block defines the execution logic.
-
-- It decides which agent runs based on conditions
-- Each rule follows: `condition : Agent {instance}`
-- Conditions are checked from top to bottom
-
-#### on_start and on_end
-
-- `on_start : Agent` → runs once at the beginning of execution
-- `on_end : Agent` → runs once at the end of execution
-
-They are special rules inside the `Route` block used to:
-
-- initialize the system (`on_start`)
-- perform final tasks like reporting or cleanup (`on_end`)
-
-This is the core part of the ORCH file where the entire system flow is controlled.
-
-```
-Route {
-		on_start : SetupAgent
-    trafficStage == 0 : IntersectionAgent {1}
-    trafficStage == 1 : ZoneAgent {1}
-    trafficStage == 1 : ZoneAgent {2}
-    trafficStage == 2 AND responseMode == 2 : EmergencyAgent {1}
-    on_end : LogAgent
-}
-```
-
----
-
-[ORCH MEMORY](ORCH FILES/ORCH MEMORY.md)
-
-===== docs-imported/ORCH FILES/Orch Includes.md =====
-# Orch Includes
-
-Owner: Durga Sai
-Verification: Verified
-Tags: orch
-
-# Feature Deep-Dive: Orchfile Includes (`.orch`)
-
-In the Global Dispatcher context (`.orch` files), the `Include` keyword is structurally responsible for **instantiating agents into the execution graph**.
-
-You use `Include` in an `.orch` file to bind `.aeon` agent definitions to the project runtime. If an agent is not explicitly included via an `Include` statement, it will not be created or executed, even if its definition file exists in the directory.
-
-## Basic Includes
-
-To pull a single instance of an agent into the runtime graph, use the keyword followed by the agent name.
-
-```
-# Include a single instance of an agent
-# Assuming 'DataCollector.aeon' exists in the folder
-Include DataCollector
-```
-
-Once included, the `DataCollector` can be targeted by the Global `Route` block.
-
-## Instantiating Parallel Agent Clones
-
-A uniquely powerful feature of the ORCH engine is its ability to instantly clone agent configurations to create multiple parallel processors.
-You can spin up `N` identical agents that share the same `.aeon` instructions but maintain their own completely isolated memory scopes.
-
-You do this by adding bracketed instantiation sizes `{N}`.
-
-```
-# Automatically create 5 separate instances of ProcessingAgent
-Include ProcessingAgent{5}
-```
-
-*Behind the scenes, `orch-lib` handles provisioning 5 parallel instances and registering them dynamically.*
-
-# Environment Variables (`.env`)
-
-The ORCH compiler contains a natively integrated pipeline specifically to load environmental secrets safely directly into the running graph.
-
-```python
-# Automatically load all variables from `.env` directly into Global Graph Memory
-Include env
-```
-
-[Environment (.env)](Orch%20Includes/Environment%20(%20env)%20338fa88181fa8075b49fd11f282d3369.md)
-
-===== docs-imported/ORCH FILES/Orch Includes/Environment ( env).md =====
-# Environment (.env)
-
-Owner: Durga Sai
-Verification: Verified
-Tags: orch
-
-## Sourcing Environment Variables
-
-By declaring the specific reserved phrase `Include env` in your global orchestrator (`.orch`), the transpiler hooks directly to the backend to automatically load and parse a `.env` file from the runtime directory.
-
-```
-# Automatically load all variables from `.env` directly into Global Graph Memory
-Include env
-```
-
-All key-value pairs established in the `.env` file are seamlessly unpacked and bundled into the overarching **Graph Memory** layer as explicitly public variables.
-
-## 1. Example `.env` File
-
-```
-API_KEY=YOUR_SECRET_KEY
-DB_HOST=localhost
-```
-
-## 2. Accessing From Inside an Agent (`Task` block)
-
-Because the environment pairs map entirely into the graph’s public memory structure, any initialized agent can freely read those variables in their `Task` blocks by specifically reaching into the global scope using the `Public` accessor.
-
-```
-Task check_connection {
-    # Natively fetches the variable loaded from the .env into Graph Memory
-    current_key = Public.API_KEY;
-}
-```
-
-## 3. Accessing From Python (`Func` block)
-
-Because the ORCH compilation engine utilizes standard `dotenv` libraries under the hood during the script’s execution phase, `.env` variables are completely simultaneously injected straight into the operating system shell environment.
-
-This means any pure Python script running within an agent’s `Func` escape hatch can use standard Python `os` modules to fetch them natively, completely sidestepping standard Graph Memory:
-
-```
-Func check_native_env {
-    import os
-    # Fetch natively from the underlying OS environment
-    python_key = os.environ.get("API_KEY")
-    return python_key;
-}
-```
-
-===== docs-imported/ORCH FILES/ORCH MEMORY.md =====
-# ORCH MEMORY
-
-Owner: Durga Sai
-Verification: Verified
-Tags: orch
-
-# Feature Deep-Dive: Global Memory (`.orch`)
-
-Memory handling inside the Global Dispatcher (`.orch` file) establishes overarching state that is inherently **public** to the entire project.
-
-The available variable types in ORCH are: `int`, `float`, `char`, `string`, `list`, `tuple`.
-
-## How to Define Global Memory
-
-Global memory is defined freely at the top level of the `.orch` file (they are not enclosed within any `Private` or functional block). You simply declare a type and a variable name.
-
-```
-Include ProcessingAgent
-
-# Defining global memory
-int totalRounds = 10
-string currentMode = "competitive"
-```
-
-## How to Use Global Memory in `.orch` Files
-
-Within the `.orch` file itself, these variables are primarily used to direct the Global `Route` block. They act as the state conditions determining which Agent gets to run next.
-
-```
-Route {
-   # Using global variables natively without prefixes in the orchestrator
-   totalRounds > 0 : ProcessingAgent
-}
-```
-
-## How to Use Global Memory in `.aeon` Files
-
-Because any variable defined in the `.orch` file is implicitly placed into the **Graph/Global Memory**, they are universally accessible to all `.aeon` agents connected to the graph.
-
-Inside any agent’s `Task` blocks, you can securely access these variables by using the `Public` accessor prefix.
-
-```
-Task evaluate_mode {
-    # Accessing 'currentMode' globally defined in the .orch file
-    IF Public.currentMode == "competitive" {
-        # Perform action
-        Public.totalRounds = Public.totalRounds - 1
-    }
-}
-```
-
-Global memory variables act as the system-wide static glue binding agent logic. They track the overarching progress, whereas agent-specific logic states belong strictly nested within the agents themselves.
-
-===== docs-imported/Routing.md =====
-# Routing
-
-Owner: Durga Sai
-Verification: Verified
-Tags: Design
-
-# Feature Deep-Dive: Routing
-
-The `Route` block represents the central authority of any ORCH project. In ORCH, agents and tasks **never** trigger each other directly. Instead, all transitions and control flows are centralized inside `Route` blocks.
-
-`Route` blocks are evaluated top-down. The first condition that evaluates to `true` is chosen to execute next.
-
-There are exactly two variations of the `Route` block: **Global Routing** and **Agent Routing**.
-
----
-
-## 1. Global Routing (in `.orch`)
-
-Located in the Global Dispatcher, this route block decides *which Agent* gets to run.
-
-### Reserved Keywords
-
-- `on_start`: (Optional) Triggered exactly once when the program officially begins.
-- `on_end`: (Optional) Triggered when the graph concludes.
-
-### Example
-
-```
-int errors = 0
-
-Route {
-    # The first condition to match will trigger the corresponding Agent
-    errors > 5 : AlertAgent          # Triggers AlertAgent if critical error
-    on_start : InitAgent             # Always kicks off here first
-}
-```
-
----
-
-## 2. Routing to Specific Clones (`{i}`)
-
-When dealing with an array of cloned agents initialized in your global orchestrator (e.g., `Include WorkerAgent{3}`), you can explicitly route to a specific instance of that agent class by using the zero-indexed `{i}` syntax.
-
-```
-# Correct targeted deterministic routing for clones
-Route {
-    condition_A : WorkerAgent{0}    # Triggers the first clone explicitly
-    condition_B : WorkerAgent{1}    # Triggers the second clone explicitly
-}
-```
-
-### Warning: Non-Deterministic Execution Order
-
-A critical detail when designing routes is ensuring conditions are mutually exclusive if exact execution order matters.
-
-If you map the **exact same trigger condition** to multiple different targets inside the exact same `Route` block (or if you map a condition to an unindexed class of initialized clones), the ORCH compiler does not guarantee which one will execute first. Order will be highly variable and non-deterministic on every run.
-
-**Avoid duplicate triggers** unless the sequence of execution does not matter to your logic.
-
----
-
-## 3. Agent Routing (in `.aeon`)
-
-Located inside every Agent Definition, this route block decides *which internal Task* is executed when the global route gives control to the Agent.
-
-### Example
-
-```
-Route {
-    health < 30 : heal       # If low health, agent focuses on healing
-    on_start : fight         # Otherwise, agent defaults to fighting
-}
-```
-
-===== docs-imported/Usage and Structure.md =====
-# Usage and Structure
-
-Owner: Durga Sai
-Verification: Verified
-Tags: Usage
-
-# ORCH DSL: Usage and Project Structure
-
-The ORCH DSL provides a distributed compilation pipeline. The front-end compiler, `main.exe` (written in OCaml), parses your ORCH project, generates a JSON representation (AST), and then invokes a Python script (`converter.py`) to transpile the project into a runnable Python application leveraging `orch-lib`.
-
-## Usage
-
-You can run the compiler using the following syntax:
-
-```bash
-./main.exe [--dryrun] [--verbose] [--no-delete] <project_directory>
-```
-
-### Options
-
-- `<project_directory>` : **(Required)** Specifies the path to the directory containing your project.
-- `-dryrun` : **(Optional)** Generates the Python file without executing it.
-- `-verbose` : **(Optional)** Enables verbose logging.
-- `-no-delete` : **(Optional)** Prevents automatic cleanup of the generated `.json` and `.py` files.
-
-### Internal Workflow
-
-1. **Parsing:** `main.exe` reads the project in `<project_directory>`.
-2. **JSON Generation:** Constructs an AST and outputs it as JSON.
-3. **Transpilation:** Converts the JSON file to a Python execution file (`<project_name>.py`).
-4. **Execution:** Automatically runs the Python file.
-5. **Cleanup:** Deletes intermediate generated `.json` and `.py` files.
-
----
-
-## Project Structure
-
-Your project should exist within a single directory. The ORCH DSL is designed to cleanly separate global orchestration logic from agent-specific task logic.
-
-### Directory Components
-
-Your directory can contain the following:
-- **The Global Dispatcher (`.orch` files):** The main entry point for the entire project.
-- **Agent Definitions (`.aeon` files):** The individual files or blocks implementing your specific agents.
-- **`*.lib`:** (Optional) Sub-library files containing shared functions.
-- **`*.py`:** (Optional) External Python scripts for direct absolute imports. Note: relative imports are NOT accepted.
-
-### The Global Dispatcher (`.orch` files)
-
-The orchestrator handles overall global routing logic and configures which agents exist. Core blocks that can be there:
-- **Includes:** Defines the agents to be pulled in.
-- **Global Variables:** Top-level state accessible across the entire structure.
-- **Global Route:** Central authority deciding which agent runs next.
-
-### The Agent Definition (`.aeon` files)
-
-An agent defines its own memory, executable actions, internal routing logic, and python bindings. Component blocks that can be there:
-- **`Private`:** Defines the agent memory and internal state variables (both private scope and public scope).
-- **`Task`:** Defines executable actions intended to mutate state.
-- **`Func`:** Defines custom inline native Python extensions for complex capability.
-- **`Route`:** Defines the internal, agent-specific routing rules dictating which task executes.
-
-### The Library Definition (`.lib` files)
-
-A Library file is just a list of functions in a file that needed to be imported in `.aeon` files
 
 ===== docs/AEON FILE.md =====
-# AEON FILE
+---
+title: AEON Files
+summary: Define an agent's memory, tasks, Python functions, and internal route rules.
+owner: Durga Sai
+tags:
+  - aeon
+  - agents
+---
 
-Owner: Durga Sai
-Tags: aeon
+# AEON Files
 
 An `.aeon` file defines the behavior of an agent.
 
 Each agent:
 
-- stores some data
-- performs tasks
-- shares results with other agents
+- stores some data.
+- performs tasks.
+- shares results with other agents.
 
----
-
-### Basic Structure
+## Basic Structure
 
 Every agent file follows this structure:
 
-```
+```orch
 Include Library
 
 Private {
@@ -953,28 +163,24 @@ Route {
 }
 ```
 
----
-
-This section explains the structure of an agent using the **EmergencyAgent.aeon** file as an example
+This section explains the structure of an agent using the **EmergencyAgent.aeon** file as an example.
 
 ### 1. Include (Optional)
 
 You can include Python libraries at the top:
 
-```
+```orch
 Include time
 Include datetime
 ```
 
 These can be used inside tasks.
 
----
-
 ### 2. Variables (Private & Public)
 
 All variables are defined inside the `Private` block.
 
-```
+```orch
 Private {
     int count;
     string status = "idle";
@@ -982,16 +188,14 @@ Private {
 }
 ```
 
-- `Private` → only this agent can use
-- `Public` → shared with other agents
-
----
+- `Private` -> only this agent can use.
+- `Public` -> shared with other agents.
 
 ### 3. Tasks (Core Logic)
 
 Tasks define what the agent does.
 
-```
+```orch
 Task process {
     result = count * 2
 }
@@ -999,7 +203,7 @@ Task process {
 
 You can also use conditions:
 
-```
+```orch
 Task check {
     IF count > 10 {
         result = 1
@@ -1009,28 +213,24 @@ Task check {
 }
 ```
 
----
-
 ### 4. Using Python in Tasks
 
 You can directly call Python functions:
 
-```
+```orch
 Task report {
     log("Result:", result)
     time.sleep(1)
 }
 ```
 
-[Functions](LIB FILE/Functions.md) 
-
----
+See [Library Functions](LIB FILE/Functions.md) for reusable Python-backed functions.
 
 ### 5. Route Block (Execution Flow)
 
 The `Route` block controls which task runs.
 
-```
+```orch
 Route {
     on_start : process
     count > 10 : check
@@ -1038,15 +238,13 @@ Route {
 }
 ```
 
-- `on_start` → runs first
-- conditions → decide next tasks
-- `on_end` → runs at the end
-
----
+- `on_start` -> runs first.
+- conditions -> decide next tasks.
+- `on_end` -> runs at the end.
 
 ### 6. Complete Example
 
-```
+```orch
 Include time
 
 Private {
@@ -1069,88 +267,104 @@ Route {
 }
 ```
 
----
+## Understanding the Agent Structure
 
-### Understanding the Agent Structure
+- Variables -> what information the agent keeps track of.
+- Tasks -> the actions the agent performs.
+- Route -> decides when each action should run.
 
-- Variables → what information the agent keeps track of
-- Tasks → the actions the agent performs
-- Route → decides when each action should run
+Together, this helps the agent work step by step and interact smoothly with other agents in the system.
 
-Together, this helps the agent work step-by-step and interact smoothly with other agents in the system.
+## In This Section
 
-[AEON Memory](AEON FILE/AEON Memory.md)
+- [Includes](AEON FILE/AEON Includes.md)
+- [Agent Memory](AEON FILE/AEON Memory.md)
+- [Tasks](AEON FILE/TASKS.md)
 
-[AEON Includes](AEON FILE/AEON Includes.md)
-
-[TASKS](AEON FILE/TASKS.md)
 
 ===== docs/AEON FILE/AEON Includes.md =====
+---
+title: AEON Includes
+summary: Import `.lib` files, Python libraries, and Python scripts into `.aeon` files.
+owner: Durga Sai
+verification: Verified
+tags:
+  - aeon
+  - includes
+---
+
 # AEON Includes
-
-Owner: Durga Sai
-Verification: Verified
-Tags: aeon
-
-# Feature Deep-Dive: Agent Includes (`.aeon`)
 
 Inside the Agent Definition context (`.aeon` files), the `Include` keyword serves a fundamentally different purpose compared to the global orchestrator.
 
-In an `.aeon` file, `Include` is used to import reusable modules, shared functions, or native Python libraries directly into the agent’s internal logic.
+In an `.aeon` file, `Include` is used to import reusable modules, shared functions, or native Python libraries directly into the agent's internal logic.
 
 ## Resolution Order
 
 When you use `Include my_module` inside an `.aeon` file, the transpiler follows a specific fallback order to resolve the import:
 
-1. **Local `.lib` Files**: First, it checks if a file named `my_module.lib` exists within your project directory.
-2. **Inbuilt Libraries**: Second, it checks against ORCH’s default native library system (Note: There are currently no inbuilt libraries available).
-3. **Python Libraries & Scripts**: Finally, if both checks fail, it assumes `my_module` is either an installed Python package or an external `.py` script and uses the Python runtime to import it.
+1. **Local `.lib` Files:** First, it checks whether a file named `my_module.lib` exists within your project directory.
+2. **Inbuilt Libraries:** Second, it checks against ORCH's default native library system. There are currently no inbuilt libraries available.
+3. **Python Libraries and Scripts:** Finally, if both checks fail, it assumes `my_module` is either an installed Python package or an external `.py` script and uses the Python runtime to import it.
 
-***Important Constraint:** You cannot use relative imports pathing for Python scripts yet (e.g., `Include ../utils`), you can only provide the absolute module name.*
+!!! warning
+    You cannot use relative import paths for Python scripts yet, such as `Include ../utils`. Provide the absolute module name instead.
 
 ## Usage Examples
 
-Below are clean examples demonstrating how the compiler resolves different scenarios based on the fallback order. Unlike the orchestrator, you **cannot** instantiate arrays of objects `{N}` here.
+Below are clean examples demonstrating how the compiler resolves different scenarios based on the fallback order. Unlike the orchestrator, you **cannot** instantiate arrays of objects with `{N}` here.
 
 ### 1. Including a Local `.lib` File
 
-If you have a file named `math_logic.lib` in your folder, this pulls its shared functional logic cleanly into the agent.
+If you have a file named `math_logic.lib` in your folder, this pulls its shared functional logic into the agent.
 
-```
+```orch
 Include math_logic
 ```
 
 ### 2. Including Native Python Libraries
 
-If no local `.lib` file or ORCH inbuilt module matches, the system naturally delegates to Python’s execution space. This is how you quickly bring powerful ecosystem libraries into your agent’s `Func` scopes.
+If no local `.lib` file or ORCH inbuilt module matches, the system delegates to Python's execution space. This is how you bring Python ecosystem libraries into your agent's `Func` scopes.
 
-```
-# Automatically resolved as standard Python libraries!
+```orch
+# Automatically resolved as standard Python libraries.
 Include math
 Include json
 ```
 
 ### 3. Including External Python Scripts
 
-Identical to a library, you can seamlessly import your own local `.py` scripts (for example, `utils.py`). Just remember, relative paths (e.g., `../utils`) are strictly forbidden.
+Identical to a library, you can import your own local `.py` scripts, for example `utils.py`. Relative paths such as `../utils` are strictly forbidden.
 
-```
-# Resolves the external 'utils.py' script located in your root environment
+```orch
+# Resolves the external `utils.py` script located in your root environment.
 Include utils
 ```
 
-By supporting library includes at the agent level natively across all three fallback contexts, agents are empowered to freely share complex algorithmic logic securely without redundantly rewriting functional blocks.
+By supporting library includes at the agent level natively across all three fallback contexts, agents can share complex algorithmic logic without redundantly rewriting functional blocks.
+
+## Next
+
+- [Agent Memory](AEON Memory.md)
+- [Tasks](TASKS.md)
+- [Library Functions](../LIB FILE/Functions.md)
+
 
 ===== docs/AEON FILE/AEON Memory.md =====
+---
+title: AEON Memory
+summary: Declare private agent memory and public graph-exposed agent state.
+owner: Durga Sai
+tags:
+  - aeon
+  - memory
+---
+
 # AEON Memory
-
-Owner: Durga Sai
-
-# Feature Deep-Dive: Agent Sandbox Memory (`.aeon`)
 
 Within an Agent Definition (`.aeon` file), memory requires explicit scoping constraints. All variables for an agent must be declared tightly within its `Private { ... }` block to instruct the runtime how exposed the internal data is allowed to be.
 
-The available variable types in ORCH are: `int`, `float`, `char`, `string`, `list`, `tuple`.
+The available variable types in ORCH are `int`, `float`, `char`, `string`, `list`, and `tuple`.
 
 ## Defining Memory Scopes
 
@@ -1158,7 +372,7 @@ The available variable types in ORCH are: `int`, `float`, `char`, `string`, `lis
 
 Variables explicitly prefixed with `Private` remain strictly protected from the rest of the graph. No other agent can access them.
 
-```
+```orch
 Private {
     Private int internal_counter = 0;
 }
@@ -1166,22 +380,22 @@ Private {
 
 ### 2. Not Specifying Anything (Implicit Private)
 
-If you declare variables with normal types *without* utilizing the `Public` or `Private` prefix, **it defaults to Private automatically**. This is the standard shorthand for writing agent structures.
+If you declare variables with normal types without using the `Public` or `Private` prefix, they default to `Private`. This is the standard shorthand for writing agent structures.
 
-```
+```orch
 Private {
-    # Implicitly private. Identical behavior to 'Private string key = "abc";'
+    # Implicitly private. Same behavior as `Private string key = "abc";`.
     string key = "abc";
 }
 ```
 
 ### 3. `Public` (Graph-Exposed)
 
-By prefixing a declaration with the `Public` keyword, the system manages the variable structure inside the agent’s memory layout, but deliberately pushes an accessible alias pointing directly to the **Graph Level Memory**, broadcasting it natively to the rest of the application.
+By prefixing a declaration with the `Public` keyword, the system manages the variable structure inside the agent's memory layout and pushes an accessible alias pointing directly to the **Graph Level Memory**, broadcasting it to the rest of the application.
 
-```
+```orch
 Private {
-    # Any other agent in the system can read this variable natively!
+    # Any other agent in the system can read this variable.
     Public float satisfaction = 1.0;
 }
 ```
@@ -1189,62 +403,74 @@ Private {
 ## How to Use Your Own Memory
 
 Inside your `Task` blocks, you manipulate these variables dynamically:
-- **Using Private State:** You can call `Private.internal_counter` explicitly, or just `internal_counter` inherently since it defaults to the local agent tracking scope.
+
+- **Using Private State:** You can call `Private.internal_counter` explicitly, or just `internal_counter` because it defaults to the local agent tracking scope.
 - **Using Public State:** You can call `Public.satisfaction`.
 
-## How to Access Other Agents’ Variables
+## How to Access Other Agents' Variables
 
-If another agent (e.g., `DataCollector.aeon`) declares a `Public list raw_data = [];`, it puts that data into the central graph-level memory under that specific agent’s namespace.
+If another agent, such as `DataCollector.aeon`, declares `Public list raw_data = [];`, it puts that data into central graph-level memory under that specific agent's namespace.
 
-To read and use that variable inside *this* agent, you query it from the global pool using the `Public` accessor **followed by the target Agent’s name**.
+To read and use that variable inside this agent, query it from the global pool using the `Public` accessor followed by the target agent's name.
 
-**Inside Agent B’s Task block:**
+Inside Agent B's `Task` block:
 
-```
+```orch
 Task analyze {
-    # Fetches 'raw_data' exported publicly from the DataCollector agent specifically
+    # Fetches `raw_data` exported publicly from the DataCollector agent.
     my_local_list = Public.DataCollector.raw_data;
 
-    # If DataCollector was cloned as an array (e.g. Include DataCollector{3})
-    # You must specify the index of the clone!
+    # If DataCollector was cloned as an array, e.g. Include DataCollector{3},
+    # specify the index of the clone.
     my_clone_list = Public.DataCollector[1].raw_data;
 }
 ```
 
+## Next
+
+- [Tasks](TASKS.md)
+- [Routing](../Routing.md)
+
+
 ===== docs/AEON FILE/TASKS.md =====
-# TASKS
+---
+title: Tasks
+summary: Use `Task` blocks to mutate agent state with ORCH's constrained expression language.
+owner: Durga Sai
+verification: Verified
+tags:
+  - aeon
+  - tasks
+---
 
-Owner: Durga Sai
-Verification: Verified
-Tags: aeon
+# Tasks
 
-# Feature Deep-Dive: Tasks
-
-A `Task` block is where an agent mutates state. Think of `Task`s as the distinct “actions” an agent knows how to perform. However, **Tasks are entirely passive**—they don’t choose when to run. Only the agent’s `Route` block decides which Task fires.
+A `Task` block is where an agent mutates state. Think of tasks as the distinct actions an agent knows how to perform. However, **tasks are entirely passive**: they do not choose when to run. Only the agent's `Route` block decides which task fires.
 
 ## The Mathematics Sub-Language
 
-To ensure security and keep state manipulation clean, Tasks do not run arbitrary Python. They run inside ORCH’s constrained expression-based sub-language.
+To keep state manipulation secure and readable, tasks do not run arbitrary Python. They run inside ORCH's constrained expression-based sub-language.
 
-Operations supported in a Task body:
-- **Variable Assignments:** E.g., `score = score + 1;`
-- **Conditional Branches:** `IF { ... } ELSE { ... }`
-- **Logic Statements:** `AND`, `OR`
-- **Mathematical Operators:** `<`, `>`, `<=`, `>=`, `==`, `!=`, `+`, `-`, `/`, `*`
+Operations supported in a task body:
+
+- **Variable Assignments:** For example, `score = score + 1;`.
+- **Conditional Branches:** `IF { ... } ELSE { ... }`.
+- **Logic Statements:** `AND`, `OR`.
+- **Mathematical Operators:** `<`, `>`, `<=`, `>=`, `==`, `!=`, `+`, `-`, `/`, `*`.
 
 ## Example
 
-```
+```orch
 Task evaluate_data {
-    # Basic math and assignment
+    # Basic math and assignment.
     confidence = confidence * 0.95;
 
-    # Conditional checks
+    # Conditional checks.
     IF error_rate > 5.0 {
-        # Inter-agent public mutation
+        # Inter-agent public mutation.
         Public.status = "failure";
     } ELSE {
-        # Invoking an internal Func block or library
+        # Invoking an internal Func block or library.
         Public.status = format_success_msg(confidence);
     }
 }
@@ -1252,19 +478,30 @@ Task evaluate_data {
 
 ## Characteristics
 
-- **Strict Logic Constraint:** By restricting exactly what a Task can do, ORCH keeps state mutations clearly defined without getting bogged down in boilerplate API calls or complex logic nested at the wrong layer.
-- **Delegation:** When a Task finds something too complex to calculate mathematically, it pushes that calculation to a `Func` block using `CALL`.
+- **Strict Logic Constraint:** By restricting exactly what a task can do, ORCH keeps state mutations clearly defined without getting bogged down in boilerplate API calls or complex logic nested at the wrong layer.
+- **Delegation:** When a task finds something too complex to calculate mathematically, it pushes that calculation to a `Func` block using `CALL`.
+
+## Next
+
+- [Library Functions](../LIB FILE/Functions.md)
+- [Routing](../Routing.md)
+
 
 ===== docs/index.md =====
-# DSL USER GUIDE
+---
+title: ORCH Agent Graph Orchestration Language
+summary: Start here for the ORCH and AEON DSL documentation.
+owner: Durga Sai
+tags:
+  - overview
+  - orch
+---
 
 # ORCH Agent Graph Orchestration Language
 
-ORCH is a domain-specific language for building and orchestrating systems made up of multiple intelligent agents. You write agents, give them tasks and memory, and use a central Route block to control which agent runs when.
+ORCH is a domain-specific language for building and orchestrating systems made up of multiple intelligent agents. You write agents, give them tasks and memory, and use a central `Route` block to control which agent runs when.
 
 Programs in ORCH are structured as a **graph of agents**. Each agent is an independent unit with its own private state and task logic. A single orchestrator file ties them all together, defining which agents exist and how execution flows between them.
-
----
 
 ## Features of the ORCH System
 
@@ -1273,66 +510,166 @@ ORCH is not just another agent-chaining framework; it is a purpose-built Domain-
 ### 1. Centrally Controlled Execution Automation
 
 Unlike implicit state-machine or message-bus setups where agents call each other, ORCH centralizes the orchestrator flow.
-- At the **Graph** level, the `Route` block decides which node/agent operates.
-- At the **Agent** level, the `Route` block restricts agent scope to simple execution of Tasks.
+
+- At the **Graph** level, the `Route` block decides which node or agent operates.
+- At the **Agent** level, the `Route` block restricts agent scope to simple execution of tasks.
 - **Result:** You can view a project and immediately trace its state evolution and path without reading deeply into execution details.
 
 ### 2. Distributed Compilation
 
 The ORCH execution flow introduces a compiler pipeline composed of two layers:
+
 - **Fast OCaml Build:** A statically typed `main.exe` executable guarantees the stability and structural soundness of the written DSL. It parses AST structures at high speed.
-- **Generative Automation:** Instead of running the DSL line-by-line via interpreter, the architecture transpiles the tree into native Python bindings (via `converter.py`), resulting in highly integrated and performant executable code.
+- **Generative Automation:** Instead of running the DSL line by line via interpreter, the architecture transpiles the tree into native Python bindings through `converter.py`, resulting in highly integrated and performant executable code.
 
 ### 3. Sandboxed Python Escapes (`Func` blocks)
 
-You are not constrained to an obscure declarative language’s limits. The `Func` block directly surfaces **unrestricted, native Python**.
-If your agent needs to perform an API call or run a Machine Learning model, the logic lives securely inside a `Func {}`.
+You are not constrained to an obscure declarative language's limits. The `Func` block directly surfaces **unrestricted, native Python**.
+
+If your agent needs to perform an API call or run a machine learning model, the logic lives securely inside a `Func {}`.
 
 ### 4. Simplified Memory Scoping
 
 You do not need to deal with event queues to get memory working between agents.
+
 - Need graph-wide visibility? Prefix with `Public`.
 - Need isolated safety? Prefix with `Private`.
+
 `orch-lib` translates this behind the scenes directly into structured contexts for every single agent and task.
 
 ### 5. Parallel/Multi-Agent Cloning Support
 
-Through the simple array syntax `Include AgentB{5}`, ORCH will silently duplicate, register, and provision 5 totally disjoint instances of `AgentB`, handling all the memory initialization.
+Through the simple array syntax `Include AgentB{5}`, ORCH will silently duplicate, register, and provision five totally disjoint instances of `AgentB`, handling all the memory initialization.
 
 ### 6. Built-in Math and Expression Evaluation Sub-language
 
-ORCH’s `Task` body behaves identically to basic `Python` expression assignments with complete support for conditional checks (`IF / ELSE`), logic bindings (`AND`, `OR`), and math operations (`+`, `-`, `/`, `*`), without needing the verbosity of a full language.
+ORCH's `Task` body behaves like basic Python expression assignments with complete support for conditional checks (`IF / ELSE`), logic bindings (`AND`, `OR`), and math operations (`+`, `-`, `/`, `*`), without needing the verbosity of a full language.
 
+## Documentation Map
+
+Read the guides in this order when you are learning the DSL:
+
+1. [Installation](Installation.md)
+2. [Downloads](Installation/Downloads.md)
+3. [Usage and Structure](Usage and Structure.md)
+4. [ORCH Files](ORCH FILES.md)
+5. [AEON Files](AEON FILE.md)
+6. [Library Files](LIB FILE.md)
+7. [Routing](Routing.md)
+
+
+
+===== docs/Installation.md =====
+---
+title: Installation
+summary: Install Python runtime support for ORCH projects.
+owner: Durga Sai
+verification: Verified
+tags:
+  - installation
 ---
 
-[Usage and Structure](Usage and Structure.md)
+# Installation
 
-[ORCH FILES](ORCH FILES.md)
+Install the Python runtime package before running ORCH projects.
 
-[AEON FILE](AEON FILE.md)
+## Requirements
 
-[LIB FILE](LIB FILE.md)
+- Python 3.10 or newer.
+- `pip`, Python's package installer.
 
-[Routing](Routing.md)
+Check that both are available:
+
+```bash
+python --version
+python -m pip --version
+```
+
+## Install `orch-lib`
+
+Install the ORCH Python runtime package with `pip`:
+
+```bash
+python -m pip install orch-lib
+```
+
+## Next
+
+- [Downloads](Installation/Downloads.md)
+- [Usage and Structure](Usage and Structure.md)
+- [ORCH Files](ORCH FILES.md)
+
+
+
+===== docs/Installation/Downloads.md =====
+---
+title: Downloads
+summary: Download ORCH release files from the static site releases directory.
+owner: Durga Sai
+verification: Generated
+tags:
+  - installation
+  - downloads
+  - releases
+---
+
+# Downloads
+
+Generated from `docs/releases/latest`. Filenames can change between versions, so this page maps the current release files by fuzzy matching platform and distribution tokens in the release filenames.
+
+## Recommended Downloads
+
+| Use | Download | Release file |
+| --- | --- | --- |
+| Windows executable | [Windows x86_64 (v2.0.0)](../releases/latest/main-v2.0.0-windows11-server2022-x86_64.exe) | `main-v2.0.0-windows11-server2022-x86_64.exe` |
+| macOS Sequoia executable | [macOS Sequoia ARM64 (v2.0.0)](../releases/latest/main-v2.0.0-macos-sequoia-apple-silicon-arm64) | `main-v2.0.0-macos-sequoia-apple-silicon-arm64` |
+| macOS Sonoma executable | [macOS Sonoma ARM64 (v2.0.0)](../releases/latest/main-v2.0.0-macos-sonoma-apple-silicon-arm64) | `main-v2.0.0-macos-sonoma-apple-silicon-arm64` |
+| Ubuntu 24 / Noble executable | [Ubuntu 24 / Noble x86_64 (v2.0.0)](../releases/latest/main-v2.0.0-linux-ubuntu24-noble-x86_64) | `main-v2.0.0-linux-ubuntu24-noble-x86_64` |
+| Ubuntu 22 / Jammy executable | [Ubuntu 22 / Jammy x86_64 (v2.0.0)](../releases/latest/main-v2.0.0-linux-ubuntu22-jammy-x86_64) | `main-v2.0.0-linux-ubuntu22-jammy-x86_64` |
+| Debian 12 / Bookworm executable | [Debian 12 / Bookworm x86_64 (v2.0.0)](../releases/latest/main-v2.0.0-linux-debian12-bookworm-x86_64) | `main-v2.0.0-linux-debian12-bookworm-x86_64` |
+| Fedora executable | [Fedora x86_64 (v2.0.0)](../releases/latest/main-v2.0.0-linux-fedora41-x86_64) | `main-v2.0.0-linux-fedora41-x86_64` |
+| Arch Linux executable | [Arch Linux x86_64 (v2.0.0)](../releases/latest/main-v2.0.0-linux-arch-rolling-x86_64) | `main-v2.0.0-linux-arch-rolling-x86_64` |
+| Verify downloaded release files | [Checksums](../releases/latest/SHA256SUMS.txt) | `SHA256SUMS.txt` |
+| Read release notes | [Release notes](../releases/latest/README.md) | `README.md` |
+
+## Release Directory
+
+- [Open the `latest` release notes](../releases/latest/README.md)
+- [Open `llm.txt`](../llm.txt)
+
+## Runtime Setup
+
+Before running a release executable, install the Python runtime package:
+
+```bash
+python -m pip install orch-lib
+```
+
+
 
 ===== docs/LIB FILE.md =====
-# LIB FILE
+---
+title: Library Files
+summary: Define reusable Python-backed functions that `.aeon` agents can import.
+owner: Durga Sai
+tags:
+  - library
+  - functions
+---
 
-Owner: Durga Sai
+# Library Files
 
-A `.lib` file is used to define reusable functions that can be used inside agent files.
+A `.lib` file defines reusable functions that can be used inside agent files.
 
 It helps you:
 
-- avoid repeating logic
-- write complex operations in Python
-- reuse functions across multiple agents
+- avoid repeating logic.
+- write complex operations in Python.
+- reuse functions across multiple agents.
 
----
+## Example (`math.lib`)
 
-### Example (math.lib)
-
-```
+```orch
 Func add {
     result = a + b
     return result;
@@ -1344,73 +681,74 @@ Func multiply {
 }
 ```
 
----
+## Explanation
 
-### Explanation
+- `Func` -> defines a function.
+- The block body -> contains Python code.
+- `return` -> specifies the output of the function.
 
-- `Func` → defines a function
-- Inside the block → you can write Python code
-- `return` → specifies the output of the function
-
----
-
-### Using Library Functions in Agents
+## Using Library Functions in Agents
 
 First, include the library in your agent file:
 
-```
+```orch
 Include math
 ```
 
 Then call the function inside a task:
 
-```
+```orch
 Task compute {
     result = add(a, b)
 }
 ```
 
----
+## Key Points
 
-### Key Points
+- `.lib` files only contain functions.
+- Functions use Python syntax.
+- Functions must end with `return <variable>;`.
+- Functions can be reused across multiple agents.
 
-- `.lib` files only contain functions
-- Functions use Python syntax
-- Must end with `return <variable>;`
-- Can be reused across multiple agents
+## Next
 
----
+- [Functions](LIB FILE/Functions.md)
+- [AEON Includes](AEON FILE/AEON Includes.md)
 
-[Functions](LIB FILE/Functions.md)
 
 ===== docs/LIB FILE/Functions.md =====
+---
+title: Functions
+summary: Use `Func` blocks as Python escape hatches for reusable and complex behavior.
+owner: Durga Sai
+verification: Verified
+tags:
+  - library
+  - functions
+  - aeon
+---
+
 # Functions
 
-Owner: Durga Sai
-Verification: Verified
-Tags: aeon
+While ORCH uses a custom syntax sub-language for mathematical assignments inside `Task` blocks, multi-agent systems routinely need to call APIs, run machine learning inference, interact with databases, or parse complex text.
 
-# Funcs
-
-While ORCH utilizes a custom syntactical sub-language for mathematical assignments inside `Task` blocks, Multi-Agent systems routinely require calling APIs, performing heavy machine learning inference, interacting with databases, or parsing complex text.
-
-The `Func` block is the ultimate escape hatch: **The body of a Func block is unrestricted Python.**
+The `Func` block is the escape hatch: **the body of a `Func` block is unrestricted Python**.
 
 ## Defining a Func
 
-A `Func` lets you write standard Python precisely where you need computational payload without cluttering the declarative nature of the agent’s routing structure.
+A `Func` lets you write standard Python exactly where you need computational payload without cluttering the declarative nature of the agent's routing structure.
 
 The only rule is that a `Func` must conclude by returning a variable to pass back to the DSL environment.
 
 ### Syntax Example
 
-```
+```orch
 Func validate_database {
-    # Pure python is accepted here natively
+    # Pure Python is accepted here natively.
     import sqlite3
     import pandas as pd
 
-    # You can access agent memory natively by reading the mapped objects
+    # You can access agent memory natively by reading the mapped objects.
     threshold = Private.error_threshold
 
     try:
@@ -1425,18 +763,18 @@ Func validate_database {
     except Exception as e:
         result_code = -1
 
-    # The block must export a returned variable to hand back to the task
+    # The block must export a returned variable to hand back to the task.
     return result_code;
 }
 ```
 
-## How to use a Func
+## How to Use a Func
 
-You invoke a `Func` from within a `Task` block utilizing the `CALL` operator.
+Invoke a `Func` from within a `Task` block using the `CALL` operator.
 
-```
+```orch
 Task handle_db {
-    # Calling the Python escape hatch logic
+    # Calling the Python escape hatch logic.
     db_status = validate_database();
 
     IF db_status == 1 {
@@ -1445,88 +783,88 @@ Task handle_db {
 }
 ```
 
-## Why it works this way
+## Why It Works This Way
 
-By isolating Python inside `Func` blocks and isolating Mathematics/State inside `Task` blocks, the system inherently forces developers to separate execution heavy-lifting from standard agent orchestration logic. It combines the readability of a DSL with the limitless ecosystem of the Python language.
+By isolating Python inside `Func` blocks and isolating mathematics or state mutation inside `Task` blocks, the system encourages developers to separate execution-heavy logic from standard agent orchestration logic. It combines the readability of a DSL with the wider Python ecosystem.
+
+## Next
+
+- [Tasks](../AEON FILE/TASKS.md)
+- [Routing](../Routing.md)
+
 
 ===== docs/ORCH FILES.md =====
-# ORCH FILES
-
-Owner: Durga Sai
-Verification: Verified
-Tags: orch
-
-An `.orch` file is used to define a workflow using your DSL.
-
-It describes a sequence of tasks, what each task does, and how they are connected.
-
-You can think of it as a script that controls how different steps are executed.
-
 ---
+title: ORCH Files
+summary: Define the global dispatcher, graph memory, includes, and route rules for an ORCH project.
+owner: Durga Sai
+verification: Verified
+tags:
+  - orch
+  - dispatcher
+---
+
+# ORCH Files
+
+An `.orch` file defines a workflow using the DSL. It describes which agents are included, which graph-level variables exist, and how execution moves between agents.
+
+You can think of it as the script that controls how different steps are executed.
 
 ## ORCH File Structure
 
 An ORCH file follows a fixed structure:
 
----
-
 ### 1. Include Section
 
 We first include all required files.
 
-- Agent files are included using `Include AgentName`
-- Multiple instances can be created using `{n}`
+- Agent files are included using `Include AgentName`.
+- Multiple instances can be created using `{n}`.
 
-```
+```orch
 Include IntersectionAgent {4}
 Include ReportAgent
 ```
 
 This is where we load all agents that will be used in the system.
 
-[Orch Includes](ORCH FILES/Orch Includes.md)
-
----
-
 ### 2. Global Variables
 
 After including agents, we define global variables.
 
-- These variables control the execution flow
-- Example: `trafficStage`, `responseMode`
+- These variables control the execution flow.
+- Example variables: `trafficStage`, `responseMode`.
 
-```
+```orch
 int trafficStage = 0
 int responseMode = 0
 ```
 
-They are mainly used inside the Route block for decision making.
-
----
+They are mainly used inside the `Route` block for decision making.
 
 ### 3. Route Block
 
-The Route block defines the execution logic.
+The `Route` block defines the execution logic.
 
-- It decides which agent runs based on conditions
-- Each rule follows: `condition : Agent {instance}`
-- Conditions are checked from top to bottom
+- It decides which agent runs based on conditions.
+- Each rule follows `condition : Agent {instance}`.
+- Conditions are checked from top to bottom.
 
 #### on_start and on_end
 
-- `on_start : Agent` → runs once at the beginning of execution
-- `on_end : Agent` → runs once at the end of execution
+- `on_start : Agent` -> runs once at the beginning of execution.
+- `on_end : Agent` -> runs once at the end of execution.
 
 They are special rules inside the `Route` block used to:
 
-- initialize the system (`on_start`)
-- perform final tasks like reporting or cleanup (`on_end`)
+- initialize the system with `on_start`.
+- perform final tasks like reporting or cleanup with `on_end`.
 
 This is the core part of the ORCH file where the entire system flow is controlled.
 
-```
+```orch
 Route {
-		on_start : SetupAgent
+    on_start : SetupAgent
     trafficStage == 0 : IntersectionAgent {1}
     trafficStage == 1 : ZoneAgent {1}
     trafficStage == 1 : ZoneAgent {2}
@@ -1535,18 +873,25 @@ Route {
 }
 ```
 
----
+## In This Section
 
-[ORCH MEMORY](ORCH FILES/ORCH MEMORY.md)
+- [Includes](ORCH FILES/Orch Includes.md)
+- [Environment Variables](ORCH FILES/Orch Includes/Environment ( env).md)
+- [Global Memory](ORCH FILES/ORCH MEMORY.md)
+
 
 ===== docs/ORCH FILES/Orch Includes.md =====
-# Orch Includes
+---
+title: ORCH Includes
+summary: Include agents, clone agent instances, and load environment variables from `.orch` files.
+owner: Durga Sai
+verification: Verified
+tags:
+  - orch
+  - includes
+---
 
-Owner: Durga Sai
-Verification: Verified
-Tags: orch
-
-# Feature Deep-Dive: Orchfile Includes (`.orch`)
+# ORCH Includes
 
 In the Global Dispatcher context (`.orch` files), the `Include` keyword is structurally responsible for **instantiating agents into the execution graph**.
 
@@ -1556,152 +901,327 @@ You use `Include` in an `.orch` file to bind `.aeon` agent definitions to the pr
 
 To pull a single instance of an agent into the runtime graph, use the keyword followed by the agent name.
 
-```
-# Include a single instance of an agent
-# Assuming 'DataCollector.aeon' exists in the folder
+```orch
+# Include a single instance of an agent.
+# Assumes `DataCollector.aeon` exists in the folder.
 Include DataCollector
 ```
 
-Once included, the `DataCollector` can be targeted by the Global `Route` block.
+Once included, `DataCollector` can be targeted by the global `Route` block.
 
 ## Instantiating Parallel Agent Clones
 
-A uniquely powerful feature of the ORCH engine is its ability to instantly clone agent configurations to create multiple parallel processors.
-You can spin up `N` identical agents that share the same `.aeon` instructions but maintain their own completely isolated memory scopes.
+A powerful feature of the ORCH engine is its ability to instantly clone agent configurations to create multiple parallel processors. You can spin up `N` identical agents that share the same `.aeon` instructions but maintain their own completely isolated memory scopes.
 
-You do this by adding bracketed instantiation sizes `{N}`.
+You do this by adding bracketed instantiation sizes, such as `{N}`.
 
-```
-# Automatically create 5 separate instances of ProcessingAgent
+```orch
+# Automatically create five separate instances of ProcessingAgent.
 Include ProcessingAgent{5}
 ```
 
-*Behind the scenes, `orch-lib` handles provisioning 5 parallel instances and registering them dynamically.*
+Behind the scenes, `orch-lib` handles provisioning five parallel instances and registering them dynamically.
 
-# Environment Variables (`.env`)
+## Environment Variables (`.env`)
 
-The ORCH compiler contains a natively integrated pipeline specifically to load environmental secrets safely directly into the running graph.
+The ORCH compiler contains a natively integrated pipeline to load environmental secrets safely into the running graph.
 
-```python
-# Automatically load all variables from `.env` directly into Global Graph Memory
+```orch
+# Automatically load all variables from `.env` into global graph memory.
 Include env
 ```
 
-[Environment (.env)](Orch Includes/Environment ( env).md)
+## Next
+
+- [Environment Variables](Orch Includes/Environment ( env).md)
+- [Global Memory](ORCH MEMORY.md)
+
 
 ===== docs/ORCH FILES/Orch Includes/Environment ( env).md =====
-# Environment (.env)
+---
+title: Environment Variables
+summary: Load `.env` values into graph memory and Python runtime access.
+owner: Durga Sai
+verification: Verified
+tags:
+  - orch
+  - environment
+---
 
-Owner: Durga Sai
-Verification: Verified
-Tags: orch
+# Environment Variables
 
 ## Sourcing Environment Variables
 
-By declaring the specific reserved phrase `Include env` in your global orchestrator (`.orch`), the transpiler hooks directly to the backend to automatically load and parse a `.env` file from the runtime directory.
+By declaring the reserved phrase `Include env` in your global orchestrator (`.orch`), the transpiler hooks directly to the backend to automatically load and parse a `.env` file from the runtime directory.
 
-```
-# Automatically load all variables from `.env` directly into Global Graph Memory
+```orch
+# Automatically load all variables from `.env` into global graph memory.
 Include env
 ```
 
-All key-value pairs established in the `.env` file are seamlessly unpacked and bundled into the overarching **Graph Memory** layer as explicitly public variables.
+All key-value pairs established in the `.env` file are unpacked and bundled into the overarching **Graph Memory** layer as explicitly public variables.
 
 ## 1. Example `.env` File
 
-```
+```dotenv
 API_KEY=YOUR_SECRET_KEY
 DB_HOST=localhost
 ```
 
 ## 2. Accessing From Inside an Agent (`Task` block)
 
-Because the environment pairs map entirely into the graph’s public memory structure, any initialized agent can freely read those variables in their `Task` blocks by specifically reaching into the global scope using the `Public` accessor.
+Because the environment pairs map entirely into the graph's public memory structure, any initialized agent can read those variables in their `Task` blocks by reaching into the global scope with the `Public` accessor.
 
-```
+```orch
 Task check_connection {
-    # Natively fetches the variable loaded from the .env into Graph Memory
+    # Natively fetches the variable loaded from `.env` into graph memory.
     current_key = Public.API_KEY;
 }
 ```
 
 ## 3. Accessing From Python (`Func` block)
 
-Because the ORCH compilation engine utilizes standard `dotenv` libraries under the hood during the script’s execution phase, `.env` variables are completely simultaneously injected straight into the operating system shell environment.
+Because the ORCH compilation engine utilizes standard `dotenv` libraries under the hood during the script's execution phase, `.env` variables are also injected into the operating system shell environment.
 
-This means any pure Python script running within an agent’s `Func` escape hatch can use standard Python `os` modules to fetch them natively, completely sidestepping standard Graph Memory:
+This means any pure Python script running within an agent's `Func` escape hatch can use standard Python `os` modules to fetch them natively, sidestepping standard graph memory:
 
-```
+```orch
 Func check_native_env {
     import os
-    # Fetch natively from the underlying OS environment
+    # Fetch natively from the underlying OS environment.
     python_key = os.environ.get("API_KEY")
     return python_key;
 }
 ```
 
+## Next
+
+- [ORCH Includes](../Orch Includes.md)
+- [Global Memory](../ORCH MEMORY.md)
+
+
 ===== docs/ORCH FILES/ORCH MEMORY.md =====
-# ORCH MEMORY
+---
+title: Global Memory
+summary: Define and access graph-wide memory from `.orch` and `.aeon` files.
+owner: Durga Sai
+verification: Verified
+tags:
+  - orch
+  - memory
+---
 
-Owner: Durga Sai
-Verification: Verified
-Tags: orch
-
-# Feature Deep-Dive: Global Memory (`.orch`)
+# Global Memory
 
 Memory handling inside the Global Dispatcher (`.orch` file) establishes overarching state that is inherently **public** to the entire project.
 
-The available variable types in ORCH are: `int`, `float`, `char`, `string`, `list`, `tuple`.
+The available variable types in ORCH are `int`, `float`, `char`, `string`, `list`, and `tuple`.
 
 ## How to Define Global Memory
 
-Global memory is defined freely at the top level of the `.orch` file (they are not enclosed within any `Private` or functional block). You simply declare a type and a variable name.
+Global memory is defined freely at the top level of the `.orch` file. Variables are not enclosed within any `Private` or functional block. You simply declare a type and a variable name.
 
-```
+```orch
 Include ProcessingAgent
 
-# Defining global memory
+# Defining global memory.
 int totalRounds = 10
 string currentMode = "competitive"
 ```
 
 ## How to Use Global Memory in `.orch` Files
 
-Within the `.orch` file itself, these variables are primarily used to direct the Global `Route` block. They act as the state conditions determining which Agent gets to run next.
+Within the `.orch` file itself, these variables are primarily used to direct the global `Route` block. They act as the state conditions determining which agent gets to run next.
 
-```
+```orch
 Route {
-   # Using global variables natively without prefixes in the orchestrator
+   # Use global variables natively without prefixes in the orchestrator.
    totalRounds > 0 : ProcessingAgent
 }
 ```
 
 ## How to Use Global Memory in `.aeon` Files
 
-Because any variable defined in the `.orch` file is implicitly placed into the **Graph/Global Memory**, they are universally accessible to all `.aeon` agents connected to the graph.
+Because any variable defined in the `.orch` file is implicitly placed into **Graph/Global Memory**, it is universally accessible to all `.aeon` agents connected to the graph.
 
-Inside any agent’s `Task` blocks, you can securely access these variables by using the `Public` accessor prefix.
+Inside any agent's `Task` blocks, you can securely access these variables by using the `Public` accessor prefix.
 
-```
+```orch
 Task evaluate_mode {
-    # Accessing 'currentMode' globally defined in the .orch file
+    # Access `currentMode` from the `.orch` file's global memory.
     IF Public.currentMode == "competitive" {
-        # Perform action
         Public.totalRounds = Public.totalRounds - 1
     }
 }
 ```
 
-Global memory variables act as the system-wide static glue binding agent logic. They track the overarching progress, whereas agent-specific logic states belong strictly nested within the agents themselves.
+Global memory variables act as the system-wide glue binding agent logic. They track the overarching progress, whereas agent-specific logic states belong strictly nested within the agents themselves.
+
+## Next
+
+- [AEON Files](../AEON FILE.md)
+- [Routing](../Routing.md)
+
+
+===== docs/releases/latest/README.md =====
+# v2.0.0
+
+Released: 2026-04-11 11:58 UTC
+
+## Downloads
+
+| Binary | Platform |
+|--------|----------|
+| `main-v2.0.0-linux-arch-rolling-x86_64` | linux-arch-rolling-x86_64 |
+| `main-v2.0.0-linux-debian12-bookworm-x86_64` | linux-debian12-bookworm-x86_64 |
+| `main-v2.0.0-linux-fedora41-x86_64` | linux-fedora41-x86_64 |
+| `main-v2.0.0-linux-ubuntu22-jammy-x86_64` | linux-ubuntu22-jammy-x86_64 |
+| `main-v2.0.0-linux-ubuntu24-noble-x86_64` | linux-ubuntu24-noble-x86_64 |
+| `main-v2.0.0-macos-sequoia-apple-silicon-arm64` | macos-sequoia-apple-silicon-arm64 |
+| `main-v2.0.0-macos-sonoma-apple-silicon-arm64` | macos-sonoma-apple-silicon-arm64 |
+| `main-v2.0.0-windows11-server2022-x86_64.exe` | windows11-server2022-x86_64 |
+
+## Checksums (SHA256)
+
+```
+d7475d6b7c10b606b30e1766e62f3ca72c5f702098051558a0c200e1cc824ff9  ./main-v2.0.0-linux-arch-rolling-x86_64
+c26f419d48e4c28133d06e70d4b807d509fec941c426867e35b278fffd405685  ./main-v2.0.0-linux-debian12-bookworm-x86_64
+b35b5aac7d62d49d1768e13db4e56579f2803d8e305c2ed14bf23082785c0d11  ./main-v2.0.0-linux-fedora41-x86_64
+4831ce31bc56cf928d6892128608e33bd59d7cbd5928ef6d45a20125b7bd8aef  ./main-v2.0.0-linux-ubuntu22-jammy-x86_64
+f3acb2ee3c8ca334106e8c13ee60bca5b98a83952c9cce0f37f3b5984358ac1a  ./main-v2.0.0-linux-ubuntu24-noble-x86_64
+2df71902f9aed110184c1c2a3d0b9d54eddba44de19403ce77c5ee515091022e  ./main-v2.0.0-macos-sequoia-apple-silicon-arm64
+423342de17b93413696111e70b01eced31e7ca7adf854eb49d6ea95f56842cb3  ./main-v2.0.0-macos-sonoma-apple-silicon-arm64
+6c8aaa8640658e595c7f76a4442534d4aee22bbde1fbb106b0207ae799d0dc34  ./main-v2.0.0-windows11-server2022-x86_64.exe
+```
+
+## Release Notes
+
+## What's Changed
+* Semicolon related issue by @TheRGuy9201 in https://github.com/dsainvg/software_eng_lab_project/pull/42
+* Praachi by @phbalanc3d in https://github.com/dsainvg/software_eng_lab_project/pull/43
+* Add GitHub Actions workflow for release and publish process by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/46
+* Add GitHub Actions workflow for release and enhance CI by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/47
+* Enhance CI workflows: add Python setup and verification steps; update… by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/48
+* change: Update release workflow to include indirect-lobster branch by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/49
+* Scary trout by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/50
+* Improve Python execution handling by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/51
+
+## New Contributors
+* @phbalanc3d made their first contribution in https://github.com/dsainvg/software_eng_lab_project/pull/43
+
+**Full Changelog**: https://github.com/dsainvg/software_eng_lab_project/compare/RELEASE_V1.0...v2.0.0
+
+
+===== docs/releases/recent/README.md =====
+# v2.0.0
+
+Released: 2026-04-11 11:58 UTC
+
+## Downloads
+
+| Binary | Platform |
+|--------|----------|
+| `main-v2.0.0-linux-arch-rolling-x86_64` | linux-arch-rolling-x86_64 |
+| `main-v2.0.0-linux-debian12-bookworm-x86_64` | linux-debian12-bookworm-x86_64 |
+| `main-v2.0.0-linux-fedora41-x86_64` | linux-fedora41-x86_64 |
+| `main-v2.0.0-linux-ubuntu22-jammy-x86_64` | linux-ubuntu22-jammy-x86_64 |
+| `main-v2.0.0-linux-ubuntu24-noble-x86_64` | linux-ubuntu24-noble-x86_64 |
+| `main-v2.0.0-macos-sequoia-apple-silicon-arm64` | macos-sequoia-apple-silicon-arm64 |
+| `main-v2.0.0-macos-sonoma-apple-silicon-arm64` | macos-sonoma-apple-silicon-arm64 |
+| `main-v2.0.0-windows11-server2022-x86_64.exe` | windows11-server2022-x86_64 |
+
+## Checksums (SHA256)
+
+```
+d7475d6b7c10b606b30e1766e62f3ca72c5f702098051558a0c200e1cc824ff9  ./main-v2.0.0-linux-arch-rolling-x86_64
+c26f419d48e4c28133d06e70d4b807d509fec941c426867e35b278fffd405685  ./main-v2.0.0-linux-debian12-bookworm-x86_64
+b35b5aac7d62d49d1768e13db4e56579f2803d8e305c2ed14bf23082785c0d11  ./main-v2.0.0-linux-fedora41-x86_64
+4831ce31bc56cf928d6892128608e33bd59d7cbd5928ef6d45a20125b7bd8aef  ./main-v2.0.0-linux-ubuntu22-jammy-x86_64
+f3acb2ee3c8ca334106e8c13ee60bca5b98a83952c9cce0f37f3b5984358ac1a  ./main-v2.0.0-linux-ubuntu24-noble-x86_64
+2df71902f9aed110184c1c2a3d0b9d54eddba44de19403ce77c5ee515091022e  ./main-v2.0.0-macos-sequoia-apple-silicon-arm64
+423342de17b93413696111e70b01eced31e7ca7adf854eb49d6ea95f56842cb3  ./main-v2.0.0-macos-sonoma-apple-silicon-arm64
+6c8aaa8640658e595c7f76a4442534d4aee22bbde1fbb106b0207ae799d0dc34  ./main-v2.0.0-windows11-server2022-x86_64.exe
+```
+
+## Release Notes
+
+## What's Changed
+* Semicolon related issue by @TheRGuy9201 in https://github.com/dsainvg/software_eng_lab_project/pull/42
+* Praachi by @phbalanc3d in https://github.com/dsainvg/software_eng_lab_project/pull/43
+* Add GitHub Actions workflow for release and publish process by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/46
+* Add GitHub Actions workflow for release and enhance CI by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/47
+* Enhance CI workflows: add Python setup and verification steps; update… by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/48
+* change: Update release workflow to include indirect-lobster branch by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/49
+* Scary trout by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/50
+* Improve Python execution handling by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/51
+
+## New Contributors
+* @phbalanc3d made their first contribution in https://github.com/dsainvg/software_eng_lab_project/pull/43
+
+**Full Changelog**: https://github.com/dsainvg/software_eng_lab_project/compare/RELEASE_V1.0...v2.0.0
+
+
+===== docs/releases/v2.0.0/README.md =====
+# v2.0.0
+
+Released: 2026-04-11 11:58 UTC
+
+## Downloads
+
+| Binary | Platform |
+|--------|----------|
+| `main-v2.0.0-linux-arch-rolling-x86_64` | linux-arch-rolling-x86_64 |
+| `main-v2.0.0-linux-debian12-bookworm-x86_64` | linux-debian12-bookworm-x86_64 |
+| `main-v2.0.0-linux-fedora41-x86_64` | linux-fedora41-x86_64 |
+| `main-v2.0.0-linux-ubuntu22-jammy-x86_64` | linux-ubuntu22-jammy-x86_64 |
+| `main-v2.0.0-linux-ubuntu24-noble-x86_64` | linux-ubuntu24-noble-x86_64 |
+| `main-v2.0.0-macos-sequoia-apple-silicon-arm64` | macos-sequoia-apple-silicon-arm64 |
+| `main-v2.0.0-macos-sonoma-apple-silicon-arm64` | macos-sonoma-apple-silicon-arm64 |
+| `main-v2.0.0-windows11-server2022-x86_64.exe` | windows11-server2022-x86_64 |
+
+## Checksums (SHA256)
+
+```
+d7475d6b7c10b606b30e1766e62f3ca72c5f702098051558a0c200e1cc824ff9  ./main-v2.0.0-linux-arch-rolling-x86_64
+c26f419d48e4c28133d06e70d4b807d509fec941c426867e35b278fffd405685  ./main-v2.0.0-linux-debian12-bookworm-x86_64
+b35b5aac7d62d49d1768e13db4e56579f2803d8e305c2ed14bf23082785c0d11  ./main-v2.0.0-linux-fedora41-x86_64
+4831ce31bc56cf928d6892128608e33bd59d7cbd5928ef6d45a20125b7bd8aef  ./main-v2.0.0-linux-ubuntu22-jammy-x86_64
+f3acb2ee3c8ca334106e8c13ee60bca5b98a83952c9cce0f37f3b5984358ac1a  ./main-v2.0.0-linux-ubuntu24-noble-x86_64
+2df71902f9aed110184c1c2a3d0b9d54eddba44de19403ce77c5ee515091022e  ./main-v2.0.0-macos-sequoia-apple-silicon-arm64
+423342de17b93413696111e70b01eced31e7ca7adf854eb49d6ea95f56842cb3  ./main-v2.0.0-macos-sonoma-apple-silicon-arm64
+6c8aaa8640658e595c7f76a4442534d4aee22bbde1fbb106b0207ae799d0dc34  ./main-v2.0.0-windows11-server2022-x86_64.exe
+```
+
+## Release Notes
+
+## What's Changed
+* Semicolon related issue by @TheRGuy9201 in https://github.com/dsainvg/software_eng_lab_project/pull/42
+* Praachi by @phbalanc3d in https://github.com/dsainvg/software_eng_lab_project/pull/43
+* Add GitHub Actions workflow for release and publish process by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/46
+* Add GitHub Actions workflow for release and enhance CI by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/47
+* Enhance CI workflows: add Python setup and verification steps; update… by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/48
+* change: Update release workflow to include indirect-lobster branch by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/49
+* Scary trout by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/50
+* Improve Python execution handling by @dsainvg in https://github.com/dsainvg/software_eng_lab_project/pull/51
+
+## New Contributors
+* @phbalanc3d made their first contribution in https://github.com/dsainvg/software_eng_lab_project/pull/43
+
+**Full Changelog**: https://github.com/dsainvg/software_eng_lab_project/compare/RELEASE_V1.0...v2.0.0
+
 
 ===== docs/Routing.md =====
+---
+title: Routing
+summary: Control graph-level agent execution and agent-level task execution with `Route` blocks.
+owner: Durga Sai
+verification: Verified
+tags:
+  - routing
+  - design
+---
+
 # Routing
-
-Owner: Durga Sai
-Verification: Verified
-Tags: Design
-
-# Feature Deep-Dive: Routing
 
 The `Route` block represents the central authority of any ORCH project. In ORCH, agents and tasks **never** trigger each other directly. Instead, all transitions and control flows are centralized inside `Route` blocks.
 
@@ -1709,40 +1229,36 @@ The `Route` block represents the central authority of any ORCH project. In ORCH,
 
 There are exactly two variations of the `Route` block: **Global Routing** and **Agent Routing**.
 
----
-
 ## 1. Global Routing (in `.orch`)
 
-Located in the Global Dispatcher, this route block decides *which Agent* gets to run.
+Located in the Global Dispatcher, this route block decides which agent gets to run.
 
 ### Reserved Keywords
 
-- `on_start`: (Optional) Triggered exactly once when the program officially begins.
-- `on_end`: (Optional) Triggered when the graph concludes.
+- `on_start`: Optional. Triggered exactly once when the program officially begins.
+- `on_end`: Optional. Triggered when the graph concludes.
 
 ### Example
 
-```
+```orch
 int errors = 0
 
 Route {
-    # The first condition to match will trigger the corresponding Agent
-    errors > 5 : AlertAgent          # Triggers AlertAgent if critical error
-    on_start : InitAgent             # Always kicks off here first
+    # The first condition to match will trigger the corresponding agent.
+    errors > 5 : AlertAgent
+    on_start : InitAgent
 }
 ```
 
----
-
 ## 2. Routing to Specific Clones (`{i}`)
 
-When dealing with an array of cloned agents initialized in your global orchestrator (e.g., `Include WorkerAgent{3}`), you can explicitly route to a specific instance of that agent class by using the zero-indexed `{i}` syntax.
+When dealing with an array of cloned agents initialized in your global orchestrator, such as `Include WorkerAgent{3}`, you can explicitly route to a specific instance of that agent class by using the zero-indexed `{i}` syntax.
 
-```
-# Correct targeted deterministic routing for clones
+```orch
+# Correct targeted deterministic routing for clones.
 Route {
-    condition_A : WorkerAgent{0}    # Triggers the first clone explicitly
-    condition_B : WorkerAgent{1}    # Triggers the second clone explicitly
+    condition_A : WorkerAgent{0}
+    condition_B : WorkerAgent{1}
 }
 ```
 
@@ -1750,35 +1266,54 @@ Route {
 
 A critical detail when designing routes is ensuring conditions are mutually exclusive if exact execution order matters.
 
-If you map the **exact same trigger condition** to multiple different targets inside the exact same `Route` block (or if you map a condition to an unindexed class of initialized clones), the ORCH compiler does not guarantee which one will execute first. Order will be highly variable and non-deterministic on every run.
+If you map the exact same trigger condition to multiple different targets inside the same `Route` block, or if you map a condition to an unindexed class of initialized clones, the ORCH compiler does not guarantee which one will execute first. Order will be variable and non-deterministic on every run.
 
-**Avoid duplicate triggers** unless the sequence of execution does not matter to your logic.
-
----
+Avoid duplicate triggers unless the sequence of execution does not matter to your logic.
 
 ## 3. Agent Routing (in `.aeon`)
 
-Located inside every Agent Definition, this route block decides *which internal Task* is executed when the global route gives control to the Agent.
+Located inside every Agent Definition, this route block decides which internal task is executed when the global route gives control to the agent.
 
 ### Example
 
-```
+```orch
 Route {
-    health < 30 : heal       # If low health, agent focuses on healing
-    on_start : fight         # Otherwise, agent defaults to fighting
+    health < 30 : heal
+    on_start : fight
 }
 ```
 
+## Related
+
+- [ORCH Files](ORCH FILES.md)
+- [AEON Files](AEON FILE.md)
+- [Tasks](AEON FILE/TASKS.md)
+
+
 ===== docs/Usage and Structure.md =====
+---
+title: Usage and Structure
+summary: How to run the compiler and organize an ORCH project directory.
+owner: Durga Sai
+verification: Verified
+tags:
+  - usage
+  - structure
+---
+
 # Usage and Structure
 
-Owner: Durga Sai
-Verification: Verified
-Tags: Usage
-
-# ORCH DSL: Usage and Project Structure
-
 The ORCH DSL provides a distributed compilation pipeline. The front-end compiler, `main.exe` (written in OCaml), parses your ORCH project, generates a JSON representation (AST), and then invokes a Python script (`converter.py`) to transpile the project into a runnable Python application leveraging `orch-lib`.
+
+## Installation
+
+Before running the compiler, install the Python runtime package:
+
+```bash
+python -m pip install orch-lib
+```
+
+Need the compiler executable or `llm.txt`? See [Downloads](Installation/Downloads.md).
 
 ## Usage
 
@@ -1790,10 +1325,10 @@ You can run the compiler using the following syntax:
 
 ### Options
 
-- `<project_directory>` : **(Required)** Specifies the path to the directory containing your project.
-- `-dryrun` : **(Optional)** Generates the Python file without executing it.
-- `-verbose` : **(Optional)** Enables verbose logging.
-- `-no-delete` : **(Optional)** Prevents automatic cleanup of the generated `.json` and `.py` files.
+- `<project_directory>`: **Required.** Specifies the path to the directory containing your project.
+- `--dryrun`: **Optional.** Generates the Python file without executing it.
+- `--verbose`: **Optional.** Enables verbose logging.
+- `--no-delete`: **Optional.** Prevents automatic cleanup of the generated `.json` and `.py` files.
 
 ### Internal Workflow
 
@@ -1803,8 +1338,6 @@ You can run the compiler using the following syntax:
 4. **Execution:** Automatically runs the Python file.
 5. **Cleanup:** Deletes intermediate generated `.json` and `.py` files.
 
----
-
 ## Project Structure
 
 Your project should exist within a single directory. The ORCH DSL is designed to cleanly separate global orchestration logic from agent-specific task logic.
@@ -1812,27 +1345,61 @@ Your project should exist within a single directory. The ORCH DSL is designed to
 ### Directory Components
 
 Your directory can contain the following:
+
 - **The Global Dispatcher (`.orch` files):** The main entry point for the entire project.
 - **Agent Definitions (`.aeon` files):** The individual files or blocks implementing your specific agents.
-- **`*.lib`:** (Optional) Sub-library files containing shared functions.
-- **`*.py`:** (Optional) External Python scripts for direct absolute imports. Note: relative imports are NOT accepted.
+- **`*.lib`:** Optional sub-library files containing shared functions.
+- **`*.py`:** Optional external Python scripts for direct absolute imports. Relative imports are not accepted.
 
 ### The Global Dispatcher (`.orch` files)
 
 The orchestrator handles overall global routing logic and configures which agents exist. Core blocks that can be there:
+
 - **Includes:** Defines the agents to be pulled in.
 - **Global Variables:** Top-level state accessible across the entire structure.
 - **Global Route:** Central authority deciding which agent runs next.
 
 ### The Agent Definition (`.aeon` files)
 
-An agent defines its own memory, executable actions, internal routing logic, and python bindings. Component blocks that can be there:
-- **`Private`:** Defines the agent memory and internal state variables (both private scope and public scope).
+An agent defines its own memory, executable actions, internal routing logic, and Python bindings. Component blocks that can be there:
+
+- **`Private`:** Defines the agent memory and internal state variables, including private and public scope.
 - **`Task`:** Defines executable actions intended to mutate state.
 - **`Func`:** Defines custom inline native Python extensions for complex capability.
 - **`Route`:** Defines the internal, agent-specific routing rules dictating which task executes.
 
 ### The Library Definition (`.lib` files)
 
-A Library file is just a list of functions in a file that needed to be imported in `.aeon` files
+A library file is a list of functions that can be imported by `.aeon` files.
+
+## Next
+
+- [Installation](Installation.md)
+- [Downloads](Installation/Downloads.md)
+- [ORCH Files](ORCH FILES.md)
+- [AEON Files](AEON FILE.md)
+- [Library Files](LIB FILE.md)
+
+
+
+===== README.md =====
+# documentation-aeon
+
+Central place to host and organize documentation, notes, and tooling for the Aeon project.
+
+## Documentation
+
+- GitHub Pages: https://dsainvg.github.io/documentation-aeon/
+- Notion workspace: https://www.notion.so/ecafa88181fa83b8af0a015be73b063c?v=338fa88181fa80aba413000c43567500
+
+## Downloads
+
+- Downloads: https://dsainvg.github.io/documentation-aeon/Installation/Downloads/
+- llm.txt: https://dsainvg.github.io/documentation-aeon/llm.txt
+
+## Contributing
+
+Feel free to open issues or pull requests to improve the documentation or tooling.
+
+
 
