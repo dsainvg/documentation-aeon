@@ -66,6 +66,23 @@ pytest
 dune clean
 ```
 
+### Running Tests Locally
+
+**OCaml Tests** are automatically configured and run as part of the development workflow:
+
+- `dune build`: Compiles all OCaml code and runs type checking.
+- `dune runtest`: Runs the OCaml test suite against compiled code.
+
+The OCaml test suite includes comprehensive tests for the lexer, parser, AST, scope checking, and code generation modules. No additional configuration is needed; tests are discoverable and executable via `dune`.
+
+**Python Tests** are run separately:  
+
+```bash
+pytest
+```
+
+This runs the Python runtime test suite for transpilation correctness, runtime behavior, and integration scenarios.
+
 Template/codegen scaffolding should be treated as setup/build artifacts and not regenerated on every run.
 
 ## Project Structure

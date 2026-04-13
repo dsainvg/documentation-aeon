@@ -68,6 +68,21 @@ Task handle_db {
 
 `Func` blocks can live in `.aeon` files or reusable `.lib` files. In either case, end the block with `return <value>`.
 
+## Numeric Literals
+
+Numeric literals in ORCH expressions (including those used to configure tasks that call `Func` blocks) support underscores for readability. The parser automatically normalizes underscores during tokenization:
+
+```orch
+int max_users = 1_000_000
+int threshold = 5_000
+```
+
+These are equivalent to `1000000` and `5000` respectively. Underscore normalization is handled consistently across all numeric parsing paths.
+
+## Func Body Parsing
+
+`Func` blocks accept unrestricted Python. The parser extracts the Python body using brace-count matching and properly handles braces within Python strings and comments. Python syntax errors inside the body will be caught by the Python runtime, not the DSL parser.
+
 ## Why It Works This Way
 
 By isolating Python inside `Func` blocks and isolating mathematics or state mutation inside `Task` blocks, the system encourages developers to separate execution-heavy logic from standard agent orchestration logic. It combines the readability of a DSL with the wider Python ecosystem.

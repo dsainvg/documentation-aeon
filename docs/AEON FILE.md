@@ -158,6 +158,20 @@ Route {
 
 Together, this helps the agent work step by step and interact smoothly with other agents in the system.
 
+## Syntax Validation
+
+The AEON parser requires that all top-level tokens be recognized and properly structured. Any unknown or malformed syntax at the top level will cause the parser to fail immediately with a clear error message.
+
+Valid top-level constructs in `.aeon` files:
+
+- **Include statements:** `Include LibraryName` or `Include python_module`
+- **Variable declarations:** `Private { ... }`
+- **Task blocks:** `Task task_name { ... }`
+- **Function blocks:** `Func func_name { ... }`
+- **Route blocks:** `Route { ... }`
+
+If you use any unrecognized keyword or malformed syntax at the file's top level, parsing will fail and report the error location. This prevents invalid syntax from silently passing the parser.
+
 ## In This Section
 
 - [Includes](AEON%20FILE/AEON%20Includes.md)

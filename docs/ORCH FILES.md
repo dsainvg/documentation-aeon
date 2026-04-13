@@ -48,7 +48,9 @@ They are mainly used inside the `Route` block for decision making.
 
 ### 3. Route Block
 
-The `Route` block defines the execution logic.
+**The `Route` block is required in `.orch` files.** Every ORCH file must define at least one route block. Without a route, the orchestrator has no execution logic and will fail during parsing.
+
+The `Route` block defines the execution logic:
 
 - It decides which agent runs based on conditions.
 - Each rule follows `condition : Agent {instance}`.
@@ -80,6 +82,18 @@ Route {
     on_end : LogAgent
 }
 ```
+
+## Syntax Validation
+
+The ORCH parser requires that all top-level tokens be recognized and properly structured. Any unknown or malformed syntax at the top level will cause the parser to fail immediately with a clear error message.
+
+Valid top-level constructs in `.orch` files:
+
+- **Include statements:** `Include AgentName` or `Include AgentName {count}`
+- **Variable declarations:** `int var = 0`, `bool flag = true`, `string msg = "text"`
+- **Route blocks:** `Route { ... }`
+
+If you use any unrecognized keyword or malformed syntax at the file's top level, parsing will fail and report the error location. This prevents invalid syntax from silently passing the parser.
 
 ## In This Section
 
