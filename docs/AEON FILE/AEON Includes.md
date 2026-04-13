@@ -18,8 +18,10 @@ In an `.aeon` file, `Include` is used to import reusable modules, shared functio
 
 When you use `Include my_module` inside an `.aeon` file, the transpiler follows a specific fallback order to resolve the import:
 
-1. **Local `.lib` Files:** First, it checks whether a file named `my_module.lib` exists within your project directory.
-2. **Python Libraries and Scripts:** If no local `.lib` file matches, it assumes `my_module` is either an installed Python package or an external `.py` script and uses the Python runtime to import it.
+1. **Local `.lib` Files:** First, it checks whether a file named `my_module.lib` exists within your project directory. If it exists, functions are rendered from that library and no direct Python import line is emitted for it.
+2. **Python Module Import Fallback:** If no local `.lib` file matches, it emits `import my_module` in generated Python and resolves it through the Python runtime.
+
+Duplicate include imports across agents are de-duplicated in generated Python import lines.
 
 !!! warning
     You cannot use relative import paths for Python scripts yet, such as `Include ../utils`. Provide the absolute module name instead.
@@ -38,7 +40,7 @@ Include math_logic
 
 ### 2. Including Native Python Libraries
 
-If no local `.lib` file or ORCH built-in module matches, the system delegates to Python's execution space. This is how you bring Python ecosystem libraries into your agent's `Func` scopes.
+If no local `.lib` file matches, the system delegates to Python's execution space. This is how you bring Python ecosystem libraries into your agent's `Func` scopes.
 
 ```orch
 # Automatically resolved as standard Python libraries.
@@ -53,6 +55,16 @@ Identical to a library, you can import your own local `.py` scripts, for example
 ```orch
 # Resolves the external `utils.py` script located in your project root.
 Include utils
+```
+
+### 4. Custom Library + Fallback Example
+
+```orch
+# custom_math.lib exists, so it is treated as a DSL library include.
+Include custom_math
+
+# requests is not a local .lib file, so generated Python emits: import requests
+Include requests
 ```
 
 By supporting agent-level includes across all three fallback contexts, agents can share complex algorithmic logic without rewriting functional blocks.

@@ -21,11 +21,24 @@ Include env
 
 All key-value pairs established in the `.env` file are unpacked and bundled into the overarching **Graph Memory** layer as explicitly public variables.
 
+## Compilation Behavior
+
+When `Include env` is present, generated Python includes explicit environment bootstrap logic:
+
+- Adds `from orch_lib import load_env`.
+- Calls `env_vars = load_env('.env')` inside `main()`.
+- Merges variables into graph memory using `**env_vars` during initialization.
+
+`Include env` is a control include, not a real agent include. It enables loading and merging environment variables but is not instantiated as an agent at runtime.
+
+If `.env` is missing, loading returns an empty dictionary and execution continues.
+
 ## 1. Example `.env` File
 
 ```dotenv
 API_KEY=YOUR_SECRET_KEY
 DB_HOST=localhost
+DEBUG=false
 ```
 
 ## 2. Accessing From Inside an Agent (`Task` block)
@@ -38,6 +51,8 @@ Task check_connection {
     current_key = Public.API_KEY
 }
 ```
+
+Environment values can also be read with graph memory access patterns used by generated tasks (for example `g["API_KEY"]`).
 
 ## 3. Accessing From Python (`Func` block)
 

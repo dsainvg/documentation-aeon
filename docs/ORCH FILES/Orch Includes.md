@@ -64,6 +64,8 @@ The ORCH compiler contains a natively integrated pipeline to load environmental 
 Include env
 ```
 
+`Include env` is a special control include. It enables `.env` loading and graph-memory merge behavior in generated code and is not instantiated as an agent instance.
+
 ## Next
 
 - [Clones Library](Orch Includes/Clones ( clones).md)
