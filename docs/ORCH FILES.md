@@ -53,11 +53,14 @@ The `Route` block defines the execution logic.
 - It decides which agent runs based on conditions.
 - Each rule follows `condition : Agent {instance}`.
 - Conditions are checked from top to bottom.
+- `else : Agent {instance}` is supported as a fallback when no condition matches.
 
 #### on_start and on_end
 
 - `on_start : Agent` -> runs once at the beginning of execution.
 - `on_end : Agent` -> runs once at the end of execution.
+
+These are reserved lifecycle events and should not be written as conditional expressions.
 
 They are special rules inside the `Route` block used to:
 
@@ -73,6 +76,7 @@ Route {
     trafficStage == 1 : ZoneAgent {1}
     trafficStage == 1 : ZoneAgent {2}
     trafficStage == 2 AND responseMode == 2 : EmergencyAgent {1}
+  else : ReportAgent {1}
     on_end : LogAgent
 }
 ```

@@ -21,6 +21,8 @@ A `Func` lets you write standard Python exactly where you need computational pay
 
 The only rule is that a `Func` must conclude by returning a variable to pass back to the DSL environment.
 
+`Func` declarations are named forms (`Func my_function { ... }`). Anonymous `Func { ... }` forms are not supported.
+
 ### Syntax Example
 
 ```orch

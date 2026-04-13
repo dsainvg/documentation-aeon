@@ -51,7 +51,7 @@ You do not need to deal with event queues to get memory working between agents.
 
 Through the simple array syntax `Include AgentB{5}`, ORCH will silently duplicate, register, and provision five totally disjoint instances of `AgentB`, handling all the memory initialization.
 
-### 6. Built-in Math and Expression Evaluation Sub-language
+### 6. Math and Expression Evaluation Sub-language
 
 ORCH's `Task` body behaves like basic Python expression assignments with complete support for conditional checks (`IF / ELSE`), logic bindings (`AND`, `OR`), and math operations (`+`, `-`, `/`, `*`), without needing the verbosity of a full language.
 

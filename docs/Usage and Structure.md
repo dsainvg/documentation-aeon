@@ -55,6 +55,19 @@ Platform examples:
 4. **Execution:** Automatically runs the Python file unless `--dryrun` is set.
 5. **Cleanup:** Deletes intermediate generated `.json` and `.py` files.
 
+## Developer Workflow (Compiler Repo)
+
+For contributors working on the compiler/runtime codebase, use this canonical command flow:
+
+```bash
+dune build
+dune runtest
+pytest
+dune clean
+```
+
+Template/codegen scaffolding should be treated as setup/build artifacts and not regenerated on every run.
+
 ## Project Structure
 
 Your project should exist within a single directory. The ORCH DSL is designed to cleanly separate global orchestration logic from agent-specific task logic.

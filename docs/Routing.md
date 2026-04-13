@@ -24,6 +24,9 @@ Located in the Global Dispatcher, this route block decides which agent gets to r
 
 - `on_start`: Optional. Triggered exactly once when the program officially begins.
 - `on_end`: Optional. Triggered when the graph concludes.
+- `else`: Optional fallback rule when no condition matches.
+
+`on_start` and `on_end` are reserved event hooks, not normal conditional routes. Do not attach boolean conditions to them.
 
 ### Example
 
@@ -33,6 +36,7 @@ int errors = 0
 Route {
     # Rules are evaluated top-down each pass.
     errors > 5 : AlertAgent
+    else : DefaultAgent
     on_start : InitAgent
 }
 ```
@@ -68,6 +72,7 @@ Located inside every Agent Definition, this route block decides which internal t
 ```orch
 Route {
     health < 30 : heal
+    else : defend
     on_start : fight
 }
 ```

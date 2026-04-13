@@ -19,8 +19,7 @@ In an `.aeon` file, `Include` is used to import reusable modules, shared functio
 When you use `Include my_module` inside an `.aeon` file, the transpiler follows a specific fallback order to resolve the import:
 
 1. **Local `.lib` Files:** First, it checks whether a file named `my_module.lib` exists within your project directory.
-2. **Built-in Libraries:** Second, it checks ORCH's default native library system. There are currently no built-in libraries available.
-3. **Python Libraries and Scripts:** Finally, if both checks fail, it assumes `my_module` is either an installed Python package or an external `.py` script and uses the Python runtime to import it.
+2. **Python Libraries and Scripts:** If no local `.lib` file matches, it assumes `my_module` is either an installed Python package or an external `.py` script and uses the Python runtime to import it.
 
 !!! warning
     You cannot use relative import paths for Python scripts yet, such as `Include ../utils`. Provide the absolute module name instead.
