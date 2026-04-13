@@ -1,6 +1,6 @@
 ---
 title: ORCH Includes
-summary: Include agents, clone agent instances, and load environment variables from `.orch` files.
+summary: Include agents, clone agent instances, load environment variables, and use mechanical operations on cloned agents from `.orch` files.
 owner: Durga Sai
 verification: Verified
 tags:
@@ -39,6 +39,22 @@ Include ProcessingAgent {5}
 
 Behind the scenes, `orch-lib` handles provisioning five parallel instances and registering them dynamically.
 
+## Clones Library
+
+When you create parallel cloned agents using `Include AgentClass {N}`, the `clones` library provides mechanical operations to query and aggregate their states without manual Python loops.
+
+```orch
+Include clones
+Include WorkerAgent {5}
+
+Task count_workers {
+    idle_workers = clones.count(WorkerAgent, "status", "idle")
+    total_processed = clones.sum(WorkerAgent, "items_done")
+}
+```
+
+The library offers strict, deterministic functions for aggregation, selection, and introspection across cloned agent arrays.
+
 ## Environment Variables (`.env`)
 
 The ORCH compiler contains a natively integrated pipeline to load environmental secrets safely into the running graph.
@@ -50,5 +66,6 @@ Include env
 
 ## Next
 
+- [Clones Library](Orch Includes/Clones ( clones).md)
 - [Environment Variables](Orch Includes/Environment ( env).md)
 - [Global Memory](ORCH%20MEMORY.md)

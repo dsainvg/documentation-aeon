@@ -45,6 +45,7 @@ nav:
   - ORCH Files:
       - Overview: ORCH FILES.md
       - Includes: ORCH FILES/Orch Includes.md
+      - Clones Library: ORCH FILES/Orch Includes/Clones ( clones).md
       - Environment Variables: ORCH FILES/Orch Includes/Environment ( env).md
       - Global Memory: ORCH FILES/ORCH MEMORY.md
   - AEON Files:

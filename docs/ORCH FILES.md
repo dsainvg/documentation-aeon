@@ -1,6 +1,6 @@
 ---
 title: ORCH Files
-summary: Define the global dispatcher, graph memory, includes, and route rules for an ORCH project.
+summary: Define the global dispatcher, graph memory, includes, mechanical clones operations, and route rules for an ORCH project.
 owner: Durga Sai
 verification: Verified
 tags:
@@ -98,5 +98,6 @@ If you use any unrecognized keyword or malformed syntax at the file's top level,
 ## In This Section
 
 - [Includes](ORCH%20FILES/Orch%20Includes.md)
+- [Clones Library](ORCH%20FILES/Orch%20Includes/Clones%20(%20clones).md)
 - [Environment Variables](ORCH FILES/Orch Includes/Environment ( env).md)
 - [Global Memory](ORCH%20FILES/ORCH%20MEMORY.md)
