@@ -23,23 +23,42 @@ The only rule is that a `Func` must conclude by returning a variable to pass bac
 
 `Func` declarations are named forms (`Func my_function { ... }`). Anonymous `Func { ... }` forms are not supported.
 
+Recommended declaration style uses explicit arguments directly in the `Func` header:
+
+```orch
+Func absdiff a b {
+    r = abs(a - b)
+    return r
+}
+```
+
+Argument inference (omitting args and relying on undeclared variables in the body) is still accepted for compatibility, but is deprecated and not recommended.
+
+```orch
+# Deprecated style
+Func absdiff {
+    r = abs(a - b)
+    return r
+}
+```
+
 ### Syntax Example
 
 ```orch
-Func validate_database {
+Func validate_database threshold {
     # Pure Python is accepted here natively.
     import sqlite3
     import pandas as pd
 
-    # You can access agent memory natively by reading the mapped objects.
-    threshold = Private.error_threshold
+    # You can still access agent memory natively.
+    local_threshold = threshold
 
     try:
         conn = sqlite3.connect('local.db')
         data = pd.read_sql("SELECT * FROM metrics", conn)
         conn.close()
 
-        if len(data) > threshold:
+        if len(data) > local_threshold:
             result_code = 1
         else:
             result_code = 0
@@ -58,7 +77,7 @@ Invoke a `Func` from within a `Task` block by calling it directly.
 ```orch
 Task handle_db {
     # Call the Python escape hatch logic.
-    db_status = validate_database()
+    db_status = validate_database(Private.error_threshold)
 
     IF db_status == 1 {
         alert_flag = true

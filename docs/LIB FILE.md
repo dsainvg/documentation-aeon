@@ -20,12 +20,12 @@ It helps you:
 ## Example (`math.lib`)
 
 ```orch
-Func add {
+Func add a b {
     result = a + b
     return result
 }
 
-Func multiply {
+Func multiply a b {
     result = a * b
     return result
 }
@@ -34,6 +34,7 @@ Func multiply {
 ## Explanation
 
 - `Func` -> defines a function.
+- Explicit args in the declaration are recommended: `Func name arg1 arg2 { ... }`.
 - The block body -> contains Python code.
 - `return` -> specifies the output of the function.
 
@@ -57,6 +58,7 @@ Task compute {
 
 - `.lib` files only contain functions.
 - Functions use Python syntax.
+- Prefer explicit arguments in declarations; implicit argument inference is deprecated.
 - Functions must end with `return <variable>`.
 - Functions can be reused across multiple agents.
 
