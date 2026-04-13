@@ -21,7 +21,7 @@ Variables explicitly prefixed with `Private` remain strictly protected from the 
 
 ```orch
 Private {
-    Private int internal_counter = 0;
+    Private int internal_counter = 0
 }
 ```
 
@@ -31,8 +31,8 @@ If you declare variables with normal types without using the `Public` or `Privat
 
 ```orch
 Private {
-    # Implicitly private. Same behavior as `Private string key = "abc";`.
-    string key = "abc";
+    # Implicitly private. Same behavior as `Private string key = "abc"`.
+    string key = "abc"
 }
 ```
 
@@ -43,7 +43,7 @@ By prefixing a declaration with the `Public` keyword, the system manages the var
 ```orch
 Private {
     # Any other agent in the system can read this variable.
-    Public float satisfaction = 1.0;
+    Public float satisfaction = 1.0
 }
 ```
 
@@ -56,7 +56,7 @@ Inside your `Task` blocks, you manipulate these variables dynamically:
 
 ## How to Access Other Agents' Variables
 
-If another agent, such as `DataCollector.aeon`, declares `Public list raw_data = [];`, it puts that data into central graph-level memory under that specific agent's namespace.
+If another agent, such as `DataCollector.aeon`, declares `Public list raw_data = []`, it puts that data into central graph-level memory under that specific agent's namespace.
 
 To read and use that variable inside this agent, query it from the global pool using the `Public` accessor followed by the target agent's name.
 
@@ -65,11 +65,11 @@ Inside Agent B's `Task` block:
 ```orch
 Task analyze {
     # Fetches `raw_data` exported publicly from the DataCollector agent.
-    my_local_list = Public.DataCollector.raw_data;
+    my_local_list = Public.DataCollector.raw_data
 
     # If DataCollector was cloned as an array, e.g. Include DataCollector{3},
     # specify the index of the clone.
-    my_clone_list = Public.DataCollector[1].raw_data;
+    my_clone_list = Public.DataCollector[1].raw_data
 }
 ```
 

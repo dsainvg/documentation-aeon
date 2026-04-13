@@ -45,7 +45,7 @@ Func validate_database {
         result_code = -1
 
     # The block must export a returned variable to hand back to the task.
-    return result_code;
+    return result_code
 }
 ```
 
@@ -56,15 +56,15 @@ Invoke a `Func` from within a `Task` block by calling it directly.
 ```orch
 Task handle_db {
     # Call the Python escape hatch logic.
-    db_status = validate_database();
+    db_status = validate_database()
 
     IF db_status == 1 {
-        alert_flag = true;
+        alert_flag = true
     }
 }
 ```
 
-`Func` blocks can live in `.aeon` files or reusable `.lib` files. In either case, end the block with `return <value>;`.
+`Func` blocks can live in `.aeon` files or reusable `.lib` files. In either case, end the block with `return <value>`.
 
 ## Why It Works This Way
 

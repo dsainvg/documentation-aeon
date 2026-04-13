@@ -31,7 +31,7 @@ Located in the Global Dispatcher, this route block decides which agent gets to r
 int errors = 0
 
 Route {
-    # The first condition to match will trigger the corresponding agent.
+    # Rules are evaluated top-down each pass.
     errors > 5 : AlertAgent
     on_start : InitAgent
 }
@@ -45,15 +45,6 @@ Clone indices are **1-based** in route targets (`{1}`, `{2}`, ...).
 
 ```orch
 # Correct targeted deterministic routing for clones.
-Route {
-    condition_A : WorkerAgent{1}
-    condition_B : WorkerAgent{2}
-}
-```
-
-To target two different clones:
-
-```orch
 Route {
     condition_A : WorkerAgent{1}
     condition_B : WorkerAgent{2}

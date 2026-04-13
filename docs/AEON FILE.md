@@ -56,9 +56,9 @@ All variables are defined inside the `Private` block.
 
 ```orch
 Private {
-    int count;
-    string status = "idle";
-    Public int result;
+    int count
+    string status = "idle"
+    Public int result
 }
 ```
 
@@ -87,14 +87,18 @@ Task check {
 }
 ```
 
-### 4. Using Python in Tasks
+### 4. Calling Python Logic from Tasks
 
-You can directly call Python functions:
+Tasks remain DSL-focused. Put Python logic inside a `Func` block and call it from a task:
 
 ```orch
+Func format_report {
+    message = f"Result: {Private.result}"
+    return message
+}
+
 Task report {
-    log("Result:", result)
-    time.sleep(1)
+    report_message = format_report()
 }
 ```
 
@@ -126,13 +130,18 @@ Private {
     Public int result = 0
 }
 
+Func build_message {
+    message = f"Final result: {Private.result}"
+    return message
+}
+
 Task process {
     result = count * 2
 }
 
 Task report {
-    log("Final result:", result)
-    time.sleep(1)
+    message = build_message()
+    print(message)
 }
 
 Route {

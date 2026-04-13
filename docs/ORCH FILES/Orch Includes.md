@@ -34,7 +34,7 @@ You do this by adding bracketed instantiation sizes, such as `{N}`.
 
 ```orch
 # Automatically create five separate instances of ProcessingAgent.
-Include ProcessingAgent{5}
+Include ProcessingAgent {5}
 ```
 
 Behind the scenes, `orch-lib` handles provisioning five parallel instances and registering them dynamically.

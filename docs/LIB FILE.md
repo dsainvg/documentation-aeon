@@ -22,12 +22,12 @@ It helps you:
 ```orch
 Func add {
     result = a + b
-    return result;
+    return result
 }
 
 Func multiply {
     result = a * b
-    return result;
+    return result
 }
 ```
 
@@ -57,7 +57,7 @@ Task compute {
 
 - `.lib` files only contain functions.
 - Functions use Python syntax.
-- Functions must end with `return <variable>;`.
+- Functions must end with `return <variable>`.
 - Functions can be reused across multiple agents.
 
 ## Next

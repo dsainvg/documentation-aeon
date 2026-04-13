@@ -35,7 +35,7 @@ Because the environment pairs map entirely into the graph's public memory struct
 ```orch
 Task check_connection {
     # Natively fetches the variable loaded from `.env` into graph memory.
-    current_key = Public.API_KEY;
+  current_key = Public.API_KEY
 }
 ```
 
@@ -50,7 +50,7 @@ Func check_native_env {
     import os
     # Fetch natively from the underlying OS environment.
     python_key = os.environ.get("API_KEY")
-    return python_key;
+  return python_key
 }
 ```
 

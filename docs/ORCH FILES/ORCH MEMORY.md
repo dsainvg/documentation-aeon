@@ -47,7 +47,7 @@ Inside any agent's `Task` blocks, you can securely access these variables by usi
 Task evaluate_mode {
     # Access `currentMode` from the `.orch` file's global memory.
     IF Public.currentMode == "competitive" {
-        Public.totalRounds = Public.totalRounds - 1
+    Public.totalRounds = Public.totalRounds - 1
     }
 }
 ```

@@ -39,7 +39,7 @@ Include math_logic
 
 ### 2. Including Native Python Libraries
 
-If no local `.lib` file or ORCH inbuilt module matches, the system delegates to Python's execution space. This is how you bring Python ecosystem libraries into your agent's `Func` scopes.
+If no local `.lib` file or ORCH built-in module matches, the system delegates to Python's execution space. This is how you bring Python ecosystem libraries into your agent's `Func` scopes.
 
 ```orch
 # Automatically resolved as standard Python libraries.
