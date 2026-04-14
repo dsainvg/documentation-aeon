@@ -1,5 +1,5 @@
-site_name: Aeon Docs
-site_description: Beautiful, developer-friendly documentation for the Aeon multi-agent DSL.
+site_name: ORCH Documentation
+site_description: Beautiful, developer-friendly documentation for the ORCH orchestration DSL.
 site_author: Durga Sai
 use_directory_urls: true
 
@@ -41,6 +41,10 @@ nav:
   - Installation:
       - Overview: Installation.md
       - Downloads: Installation/Downloads.md
+      - Releases:
+          - Latest: releases/latest/README.md
+          - Recent: releases/recent/README.md
+          - v2.0.0: releases/v2.0.0/README.md
   - Usage and Structure: Usage and Structure.md
   - ORCH Files:
       - Overview: ORCH FILES.md
@@ -48,17 +52,14 @@ nav:
       - Clones Library: ORCH FILES/Orch Includes/Clones ( clones).md
       - Environment Variables: ORCH FILES/Orch Includes/Environment ( env).md
       - Global Memory: ORCH FILES/ORCH MEMORY.md
+      - Routing (Shared): Routing.md
   - AEON Files:
       - Overview: AEON FILE.md
       - Includes: AEON FILE/AEON Includes.md
       - Agent Memory: AEON FILE/AEON Memory.md
       - Tasks: AEON FILE/TASKS.md
+      - Routing (Shared): Routing.md
   - Library Files:
       - Overview: LIB FILE.md
       - Functions: LIB FILE/Functions.md
-  - Routing: Routing.md
-  - Releases:
-      - Latest: releases/latest/README.md
-      - Recent: releases/recent/README.md
-      - v2.0.0: releases/v2.0.0/README.md
 

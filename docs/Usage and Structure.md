@@ -22,12 +22,27 @@ python -m pip install orch-lib
 
 Need the compiler executable or `llm.txt`? See [Downloads](Installation/Downloads.md).
 
+### VS Code Extension (Optional)
+
+You can also use the ORCH DSL Language Support extension in Visual Studio Code for syntax highlighting, IntelliSense, linting, and Python integration.
+
+- Name: ORCH DSL Language Support
+- Id: dsainvg.orch-dsl-language-support
+- Version: 2.0.0
+- Marketplace: [ORCH DSL Language Support](https://marketplace.visualstudio.com/items?itemName=dsainvg.orch-dsl-language-support)
+
+Install command:
+
+```bash
+code --install-extension dsainvg.orch-dsl-language-support
+```
+
 ## Usage
 
 You can run the compiler using the following syntax:
 
 ```bash
-./main.exe [--dryrun] [--verbose] [--no-delete] <project_directory>
+./main.exe [--dryrun] [--verbose] [--no-delete] <project_directory> [python_path]
 ```
 
 Platform examples:
@@ -36,54 +51,37 @@ Platform examples:
 # Linux/macOS
 ./main.exe --verbose example
 
+# Linux/macOS with explicit interpreter
+./main.exe --verbose example /usr/bin/python3
+
 # Windows PowerShell
 .\main.exe --verbose example
+
+# Windows PowerShell with explicit interpreter
+.\main.exe --verbose example "C:\\Python313\\python.exe"
 ```
 
 ### Options
 
 - `<project_directory>`: **Required.** Specifies the path to the directory containing your project.
+- `[python_path]`: **Optional.** Python interpreter path to use for execution. If omitted, the compiler uses `python` from your PATH.
 - `--dryrun`: **Optional.** Generates the Python file without executing it.
 - `--verbose`: **Optional.** Enables verbose logging.
 - `--no-delete`: **Optional.** Prevents automatic cleanup of the generated `.json` and `.py` files.
+
+### Interpreter Selection
+
+- If `[python_path]` is provided, that interpreter is used to execute generated Python.
+- If `[python_path]` is omitted, the compiler falls back to `python` resolved from your system PATH.
+- If you use a virtual environment, pass its interpreter path explicitly to ensure the expected runtime and dependencies are used.
 
 ### Internal Workflow
 
 1. **Parsing:** `main.exe` reads the project in `<project_directory>`.
 2. **JSON Generation:** Constructs an AST and outputs it as JSON.
 3. **Transpilation:** Converts the JSON file to a Python execution file (`<project_name>.py`).
-4. **Execution:** Automatically runs the Python file unless `--dryrun` is set.
+4. **Execution:** Automatically runs the Python file unless `--dryrun` is set, using `[python_path]` when provided, otherwise `python` from PATH.
 5. **Cleanup:** Deletes intermediate generated `.json` and `.py` files.
-
-## Developer Workflow (Compiler Repo)
-
-For contributors working on the compiler/runtime codebase, use this canonical command flow:
-
-```bash
-dune build
-dune runtest
-pytest
-dune clean
-```
-
-### Running Tests Locally
-
-**OCaml Tests** are automatically configured and run as part of the development workflow:
-
-- `dune build`: Compiles all OCaml code and runs type checking.
-- `dune runtest`: Runs the OCaml test suite against compiled code.
-
-The OCaml test suite includes comprehensive tests for the lexer, parser, AST, scope checking, and code generation modules. No additional configuration is needed; tests are discoverable and executable via `dune`.
-
-**Python Tests** are run separately:  
-
-```bash
-pytest
-```
-
-This runs the Python runtime test suite for transpilation correctness, runtime behavior, and integration scenarios.
-
-Template/codegen scaffolding should be treated as setup/build artifacts and not regenerated on every run.
 
 ## Project Structure
 
