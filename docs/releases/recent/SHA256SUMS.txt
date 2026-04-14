@@ -1,8 +1,8 @@
-d7475d6b7c10b606b30e1766e62f3ca72c5f702098051558a0c200e1cc824ff9  ./main-v2.0.0-linux-arch-rolling-x86_64
-c26f419d48e4c28133d06e70d4b807d509fec941c426867e35b278fffd405685  ./main-v2.0.0-linux-debian12-bookworm-x86_64
-b35b5aac7d62d49d1768e13db4e56579f2803d8e305c2ed14bf23082785c0d11  ./main-v2.0.0-linux-fedora41-x86_64
-4831ce31bc56cf928d6892128608e33bd59d7cbd5928ef6d45a20125b7bd8aef  ./main-v2.0.0-linux-ubuntu22-jammy-x86_64
-f3acb2ee3c8ca334106e8c13ee60bca5b98a83952c9cce0f37f3b5984358ac1a  ./main-v2.0.0-linux-ubuntu24-noble-x86_64
-2df71902f9aed110184c1c2a3d0b9d54eddba44de19403ce77c5ee515091022e  ./main-v2.0.0-macos-sequoia-apple-silicon-arm64
-423342de17b93413696111e70b01eced31e7ca7adf854eb49d6ea95f56842cb3  ./main-v2.0.0-macos-sonoma-apple-silicon-arm64
-6c8aaa8640658e595c7f76a4442534d4aee22bbde1fbb106b0207ae799d0dc34  ./main-v2.0.0-windows11-server2022-x86_64.exe
+21b8c3aaf8a304c112447bae11432cc25506800d2229e020f94a0f2b6d376357  ./main-v3.0.1-linux-arch-rolling-x86_64
+f60fb97bfeca0bfaccaa68aa317cc4290b65404c073cd2084f878af02eb5ba70  ./main-v3.0.1-linux-debian12-bookworm-x86_64
+4cca71f9b5d78c019873ba14f2afbbcf3d6606b7c954674c6e953bd39ea099a7  ./main-v3.0.1-linux-fedora41-x86_64
+7d4fe3619f54f37ab5db3144e2a4bf26fbec99f853d7fecaf108ef54566104f7  ./main-v3.0.1-linux-ubuntu22-jammy-x86_64
+03aff1d0f33b99601e9d05ec87613739495bc5337d408d1433fa1015d45b865a  ./main-v3.0.1-linux-ubuntu24-noble-x86_64
+1c5ec74f71d9f901b622637cce9b8066099ee728c09ab577f1ef86ddc2567ff1  ./main-v3.0.1-macos-sequoia-apple-silicon-arm64
+cc69cb23da646d5d8be170e203faef870e229dfc855bafe40f8b91d580916108  ./main-v3.0.1-macos-sonoma-apple-silicon-arm64
+6756cd0ab0adb6982007fe912fe031ca23f204843d9f89980ead9a88232d260b  ./main-v3.0.1-windows11-server2022-x86_64.exe
